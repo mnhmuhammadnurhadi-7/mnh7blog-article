@@ -1,37 +1,43 @@
 ---
 /**
- * AnimatedBackground - Background animasi dengan gradient dan floating elements
- * Diadaptasi dari React portfolio untuk Astro
+ * AnimatedBackground - Match portfolio AnimatedBackground.tsx exactly
  */
 ---
 
 <div class="animated-background">
-  <div class="gradient-orb orb-1"></div>
-  <div class="gradient-orb orb-2"></div>
-  <div class="gradient-orb orb-3"></div>
-  <div class="gradient-orb orb-4"></div>
-  
-  <!-- SVG patterns -->
-  <svg class="svg-pattern pattern-1" viewBox="0 0 100 100" preserveAspectRatio="none">
-    <circle cx="50" cy="50" r="40" fill="none" stroke="rgba(59, 130, 246, 0.1)" stroke-width="0.5"/>
-    <circle cx="50" cy="50" r="30" fill="none" stroke="rgba(139, 92, 246, 0.1)" stroke-width="0.5"/>
-    <circle cx="50" cy="50" r="20" fill="none" stroke="rgba(236, 72, 153, 0.1)" stroke-width="0.5"/>
+  <!-- Noise Texture Overlay -->
+  <div class="noise-overlay"></div>
+
+  <!-- Animated Gradient Bubbles (matches portfolio DARK_COLORS) -->
+  <div class="bubble bubble-1"></div>
+  <div class="bubble bubble-2"></div>
+  <div class="bubble bubble-3"></div>
+  <div class="bubble bubble-4"></div>
+  <div class="bubble bubble-5"></div>
+  <div class="bubble bubble-6"></div>
+
+  <!-- Dot Grid (matches DotGrid.tsx spacing=24, radius=1.5, opacity=0.25) -->
+  <svg class="dot-grid" aria-hidden="true">
+    <defs>
+      <pattern id="dot-grid" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse">
+        <circle cx="12" cy="12" r="1.5" fill="currentColor" />
+      </pattern>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#dot-grid)" />
   </svg>
-  
-  <svg class="svg-pattern pattern-2" viewBox="0 0 100 100" preserveAspectRatio="none">
-    <rect x="10" y="10" width="80" height="80" fill="none" stroke="rgba(16, 185, 129, 0.1)" stroke-width="0.5" transform="rotate(45 50 50)"/>
-    <rect x="20" y="20" width="60" height="60" fill="none" stroke="rgba(6, 182, 212, 0.1)" stroke-width="0.5" transform="rotate(45 50 50)"/>
-  </svg>
-  
-  <svg class="svg-pattern pattern-3" viewBox="0 0 100 100" preserveAspectRatio="none">
-    <polygon points="50,10 90,90 10,90" fill="none" stroke="rgba(249, 115, 22, 0.1)" stroke-width="0.5"/>
-    <polygon points="50,20 80,80 20,80" fill="none" stroke="rgba(234, 179, 8, 0.1)" stroke-width="0.5"/>
-  </svg>
-  
-  <!-- Floating shapes -->
-  <div class="floating-shape shape-1"></div>
-  <div class="floating-shape shape-2"></div>
-  <div class="floating-shape shape-3"></div>
+
+  <!-- Floating Geometric Shapes (matches portfolio shapes) -->
+  <div class="shape shape-circle-1"></div>
+  <div class="shape shape-circle-2"></div>
+  <div class="shape shape-circle-3"></div>
+  <div class="shape shape-square-1"></div>
+  <div class="shape shape-square-2"></div>
+  <div class="shape shape-triangle-1"></div>
+  <div class="shape shape-triangle-2"></div>
+  <div class="shape shape-triangle-3"></div>
+
+  <!-- Subtle Grid Pattern (matches portfolio) -->
+  <div class="grid-pattern"></div>
 </div>
 
 <style>
@@ -40,231 +46,311 @@
     inset: 0;
     z-index: -1;
     overflow: hidden;
-    background: var(--bg-primary);
-    transform: translate3d(0, 0, 0);
-    -webkit-transform: translate3d(0, 0, 0);
-    isolation: isolate;
+    pointer-events: none;
+    /* Dark mode default - matches portfolio bg-zinc-950 */
+    background-color: #09090b;
   }
 
-  .animated-background::before {
-    content: '';
+  :global(html:not(.dark)) .animated-background {
+    background-color: #ffffff;
+  }
+
+  /* Dot Grid - matches DotGrid.tsx but very subtle */
+  .dot-grid {
     position: absolute;
-    top: 0;
-    left: 0;
+    inset: 0;
     width: 100%;
     height: 100%;
-    background-image: radial-gradient(rgba(148, 163, 184, 0.08) 1px, transparent 1px);
-    background-size: 24px 24px;
+    pointer-events: none;
+    opacity: 0.08;
+    color: currentColor;
+  }
+
+  :global(html:not(.dark)) .dot-grid {
+    opacity: 0.06;
+  }
+
+  /* Noise overlay */
+  .noise-overlay {
+    position: absolute;
+    inset: 0;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
     pointer-events: none;
   }
 
-  :global(html:not(.dark)) .animated-background::before {
-    background-image: radial-gradient(rgba(15, 23, 42, 0.05) 1.2px, transparent 1.2px);
-  }
-
-  .gradient-orb {
+  /* Bubbles - matches portfolio DARK_COLORS / LIGHT_COLORS */
+  .bubble {
     position: absolute;
-    border-radius: 50%;
-    filter: blur(60px);
-    -webkit-filter: blur(60px);
-    opacity: 0.5;
-    animation: float 24s cubic-bezier(0.45, 0, 0.55, 1) infinite;
-    will-change: transform, opacity;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-    transform: translate3d(0, 0, 0);
-    -webkit-transform: translate3d(0, 0, 0);
+    border-radius: 9999px;
+    filter: blur(80px);
+    will-change: transform;
+    animation: bubbleFloat 20s ease-in-out infinite;
   }
 
-  .orb-1 {
-    width: 400px;
-    height: 400px;
-    background: radial-gradient(circle, var(--accent-1) 0%, transparent 70%);
-    top: -100px;
-    left: -100px;
+  /* Dark mode: from-blue-500/30 to-purple-500/30 */
+  .bubble-1 {
+    width: 450px;
+    height: 450px;
+    background: linear-gradient(to right, rgba(59,130,246,0.3), rgba(168,85,247,0.3));
+    top: -5%;
+    left: -5%;
+    animation-duration: 25s;
     animation-delay: 0s;
   }
 
-  .orb-2 {
-    width: 300px;
-    height: 300px;
-    background: radial-gradient(circle, var(--accent-2) 0%, transparent 70%);
-    top: 50%;
-    right: -50px;
+  /* Dark mode: from-pink-500/30 to-yellow-500/30 */
+  .bubble-2 {
+    width: 380px;
+    height: 380px;
+    background: linear-gradient(to right, rgba(236,72,153,0.3), rgba(234,179,8,0.3));
+    top: 55%;
+    right: -5%;
+    animation-duration: 20s;
     animation-delay: -5s;
   }
 
-  .orb-3 {
-    width: 350px;
-    height: 350px;
-    background: radial-gradient(circle, var(--accent-3) 0%, transparent 70%);
-    bottom: -100px;
-    left: 30%;
+  /* Dark mode: from-cyan-500/30 to-green-500/30 */
+  .bubble-3 {
+    width: 320px;
+    height: 320px;
+    background: linear-gradient(to right, rgba(6,182,212,0.3), rgba(16,185,129,0.3));
+    bottom: -5%;
+    left: 28%;
+    animation-duration: 22s;
     animation-delay: -10s;
   }
 
-  .orb-4 {
-    width: 250px;
-    height: 250px;
-    background: radial-gradient(circle, var(--accent-4) 0%, transparent 70%);
-    top: 30%;
-    left: 10%;
-    animation-delay: -15s;
-  }
-
-  .svg-pattern {
-    position: absolute;
-    opacity: 0.3;
-    animation: patternFloat 18s cubic-bezier(0.45, 0, 0.55, 1) infinite;
-    will-change: transform, opacity;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-    transform: translate3d(0, 0, 0);
-    -webkit-transform: translate3d(0, 0, 0);
-  }
-
-  .pattern-1 {
+  /* Dark mode: from-orange-500/30 to-red-500/30 */
+  .bubble-4 {
     width: 300px;
     height: 300px;
-    top: 10%;
-    right: 10%;
-    animation-delay: -2s;
-  }
-
-  .pattern-2 {
-    width: 250px;
-    height: 250px;
-    bottom: 20%;
-    left: 5%;
-    animation-delay: -7s;
-  }
-
-  .pattern-3 {
-    width: 200px;
-    height: 200px;
-    top: 60%;
-    right: 30%;
-    animation-delay: -12s;
-  }
-
-  .floating-shape {
-    position: absolute;
-    opacity: 0.2;
-    animation: shapeFloat 14s cubic-bezier(0.45, 0, 0.55, 1) infinite;
-    will-change: transform, opacity;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-    transform: translate3d(0, 0, 0);
-    -webkit-transform: translate3d(0, 0, 0);
-  }
-
-  .shape-1 {
-    width: 100px;
-    height: 100px;
-    background: linear-gradient(135deg, rgba(59, 130, 246, 0.3), rgba(139, 92, 246, 0.3));
-    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-    top: 20%;
-    left: 15%;
+    background: linear-gradient(to right, rgba(249,115,22,0.3), rgba(239,68,68,0.3));
+    top: 25%;
+    left: 3%;
+    animation-duration: 18s;
     animation-delay: -3s;
   }
 
-  .shape-2 {
-    width: 80px;
-    height: 80px;
-    background: linear-gradient(135deg, rgba(16, 185, 129, 0.3), rgba(6, 182, 212, 0.3));
-    border-radius: 50%;
-    bottom: 30%;
-    right: 20%;
+  /* Dark mode: from-purple-500/30 to-indigo-500/30 */
+  .bubble-5 {
+    width: 350px;
+    height: 350px;
+    background: linear-gradient(to right, rgba(168,85,247,0.3), rgba(99,102,241,0.3));
+    top: 8%;
+    right: 12%;
+    animation-duration: 30s;
     animation-delay: -8s;
   }
 
-  .shape-3 {
-    width: 120px;
-    height: 120px;
-    background: linear-gradient(135deg, rgba(236, 72, 153, 0.3), rgba(249, 115, 22, 0.3));
-    border-radius: 20% 80% 20% 80% / 80% 20% 80% 20%;
-    top: 50%;
-    left: 50%;
-    animation-delay: -13s;
+  /* Dark mode: from-emerald-500/30 to-cyan-500/30 */
+  .bubble-6 {
+    width: 270px;
+    height: 270px;
+    background: linear-gradient(to right, rgba(52,211,153,0.3), rgba(6,182,212,0.3));
+    bottom: 18%;
+    right: 28%;
+    animation-duration: 24s;
+    animation-delay: -15s;
   }
 
-  @keyframes float {
+  /* Light mode bubble colors = LIGHT_COLORS from portfolio */
+  :global(html:not(.dark)) .bubble-1 {
+    background: linear-gradient(to right, rgba(191,219,254,0.5), rgba(165,243,252,0.5));
+  }
+  :global(html:not(.dark)) .bubble-2 {
+    background: linear-gradient(to right, rgba(186,230,253,0.5), rgba(191,219,254,0.5));
+  }
+  :global(html:not(.dark)) .bubble-3 {
+    background: linear-gradient(to right, rgba(165,243,252,0.5), rgba(199,210,254,0.5));
+  }
+  :global(html:not(.dark)) .bubble-4 {
+    background: linear-gradient(to right, rgba(233,213,255,0.5), rgba(251,207,232,0.5));
+  }
+  :global(html:not(.dark)) .bubble-5 {
+    background: linear-gradient(to right, rgba(167,243,208,0.5), rgba(153,246,228,0.5));
+  }
+  :global(html:not(.dark)) .bubble-6 {
+    background: linear-gradient(to right, rgba(199,210,254,0.5), rgba(165,243,252,0.5));
+  }
+
+  @keyframes bubbleFloat {
     0%, 100% {
       transform: translate3d(0, 0, 0) scale(1);
+      opacity: 0.25;
     }
     25% {
-      transform: translate3d(50px, 50px, 0) scale(1.08);
+      transform: translate3d(60px, -80px, 0) scale(1.3);
+      opacity: 0.45;
     }
     50% {
-      transform: translate3d(0, 90px, 0) scale(1);
+      transform: translate3d(0, -50px, 0) scale(0.95);
+      opacity: 0.35;
     }
     75% {
-      transform: translate3d(-50px, 50px, 0) scale(0.92);
+      transform: translate3d(-40px, -30px, 0) scale(1.1);
+      opacity: 0.25;
     }
   }
 
-  @-webkit-keyframes float {
+  :global(html:not(.dark)) .bubble {
+    animation-name: bubbleFloatLight;
+  }
+
+  @keyframes bubbleFloatLight {
     0%, 100% {
-      -webkit-transform: translate3d(0, 0, 0) scale(1);
+      transform: translate3d(0, 0, 0) scale(1);
+      opacity: 0.4;
     }
     25% {
-      -webkit-transform: translate3d(50px, 50px, 0) scale(1.08);
+      transform: translate3d(60px, -80px, 0) scale(1.3);
+      opacity: 0.6;
     }
     50% {
-      -webkit-transform: translate3d(0, 90px, 0) scale(1);
+      transform: translate3d(0, -50px, 0) scale(0.95);
+      opacity: 0.5;
     }
     75% {
-      -webkit-transform: translate3d(-50px, 50px, 0) scale(0.92);
+      transform: translate3d(-40px, -30px, 0) scale(1.1);
+      opacity: 0.4;
     }
   }
 
-  @keyframes patternFloat {
-    0%, 100% {
-      transform: translate3d(0, 0, 0) rotate(0deg);
-    }
-    33% {
-      transform: translate3d(30px, -30px, 0) rotate(120deg);
-    }
-    66% {
-      transform: translate3d(-30px, 30px, 0) rotate(240deg);
-    }
+  /* Floating Geometric Shapes - matches portfolio */
+  .shape {
+    position: absolute;
+    opacity: 0.08;
+    animation: shapeFloat 15s ease-in-out infinite;
   }
 
-  @-webkit-keyframes patternFloat {
-    0%, 100% {
-      -webkit-transform: translate3d(0, 0, 0) rotate(0deg);
-    }
-    33% {
-      -webkit-transform: translate3d(30px, -30px, 0) rotate(120deg);
-    }
-    66% {
-      -webkit-transform: translate3d(-30px, 30px, 0) rotate(240deg);
-    }
+  :global(html:not(.dark)) .shape {
+    opacity: 0.15;
+  }
+
+  .shape-circle-1 {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    top: 15%;
+    left: 10%;
+    animation-duration: 18s;
+    animation-delay: 0s;
+  }
+
+  .shape-circle-2 {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    top: 60%;
+    right: 15%;
+    animation-duration: 22s;
+    animation-delay: -3s;
+  }
+
+  .shape-circle-3 {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    bottom: 20%;
+    left: 25%;
+    animation-duration: 20s;
+    animation-delay: -7s;
+  }
+
+  .shape-square-1 {
+    width: 40px;
+    height: 40px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    top: 30%;
+    right: 25%;
+    animation-duration: 16s;
+    animation-delay: -2s;
+  }
+
+  .shape-square-2 {
+    width: 30px;
+    height: 30px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    bottom: 35%;
+    right: 8%;
+    animation-duration: 19s;
+    animation-delay: -5s;
+  }
+
+  .shape-triangle-1 {
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 35px solid rgba(255, 255, 255, 0.1);
+    top: 45%;
+    left: 5%;
+    animation-duration: 17s;
+    animation-delay: -1s;
+  }
+
+  .shape-triangle-2 {
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-bottom: 26px solid rgba(255, 255, 255, 0.1);
+    top: 75%;
+    left: 40%;
+    animation-duration: 21s;
+    animation-delay: -4s;
+  }
+
+  .shape-triangle-3 {
+    width: 0;
+    height: 0;
+    border-left: 18px solid transparent;
+    border-right: 18px solid transparent;
+    border-bottom: 31px solid rgba(255, 255, 255, 0.1);
+    bottom: 15%;
+    right: 35%;
+    animation-duration: 23s;
+    animation-delay: -6s;
+  }
+
+  :global(html:not(.dark)) .shape-circle-1,
+  :global(html:not(.dark)) .shape-circle-2,
+  :global(html:not(.dark)) .shape-circle-3 {
+    border-color: rgba(0, 0, 0, 0.1);
+  }
+
+  :global(html:not(.dark)) .shape-square-1,
+  :global(html:not(.dark)) .shape-square-2 {
+    border-color: rgba(0, 0, 0, 0.1);
+  }
+
+  :global(html:not(.dark)) .shape-triangle-1,
+  :global(html:not(.dark)) .shape-triangle-2,
+  :global(html:not(.dark)) .shape-triangle-3 {
+    border-bottom-color: rgba(0, 0, 0, 0.1);
   }
 
   @keyframes shapeFloat {
     0%, 100% {
-      transform: translate3d(0, 0, 0) rotate(0deg);
+      transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
     }
     50% {
-      transform: translate3d(40px, -40px, 0) rotate(180deg);
+      transform: translate3d(30px, -100px, 0) rotate(180deg) scale(1.2);
     }
   }
 
-  @-webkit-keyframes shapeFloat {
-    0%, 100% {
-      -webkit-transform: translate3d(0, 0, 0) rotate(0deg);
-    }
-    50% {
-      -webkit-transform: translate3d(40px, -40px, 0) rotate(180deg);
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .gradient-orb,
-    .svg-pattern,
-    .floating-shape {
-      animation: none;
-    }
+  /* Subtle Grid Pattern - matches portfolio */
+  .grid-pattern {
+    position: absolute;
+    inset: 0;
+    opacity: 0.02;
+    pointer-events: none;
+    background-image:
+      linear-gradient(to right, currentColor 1px, transparent 1px),
+      linear-gradient(to bottom, currentColor 1px, transparent 1px);
+    background-size: 100px 100px;
   }
 </style>

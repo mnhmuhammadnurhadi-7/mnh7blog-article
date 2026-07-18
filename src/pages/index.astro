@@ -95,15 +95,19 @@ function calculateReadingTime(content: string) {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    padding: 4rem 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
+    padding: 6rem 1.5rem; /* py-24 px-6 */
+  }
+
+  @media (min-width: 768px) {
+    .hero {
+      padding: 6rem 2.5rem; /* py-24 md:px-10 */
+    }
   }
 
   .hero-content {
-    max-width: 800px;
+    max-width: 56rem; /* max-w-4xl */
+    width: 100%;
     text-align: left;
-    padding: 0 1.5rem;
     animation: heroEnter 0.9s cubic-bezier(0.4, 0, 0.2, 1) both;
     animation-delay: 0.2s;
   }
@@ -276,9 +280,13 @@ function calculateReadingTime(content: string) {
   }
 
   .latest-posts {
-    padding: 4rem 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
+    padding: 4rem 1.5rem; /* px-6 */
+  }
+
+  @media (min-width: 768px) {
+    .latest-posts {
+      padding: 4rem 2.5rem; /* md:px-10 */
+    }
   }
 
   .section-header {
