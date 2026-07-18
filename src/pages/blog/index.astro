@@ -1,0 +1,83 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+// kumpulin semua tag unik buat filter, sekaligus contoh "filter by date" pakai tahun
+const years = [...new Set(posts.map((p) => p.data.pubDate.getFullYear()))];
+---
+<BaseLayout title="Semua Artikel" description="Kumpulan tulisan Muhammad Nur Hadi seputar SEO, teknologi, dan pengembangan diri.">
+  <h1>Semua Artikel</h1>
+
+  <input
+    type="text"
+    id="search"
+    placeholder="Cari artikel..."
+    aria-label="Cari artikel"
+  />
+
+  <div id="year-filter">
+    <button data-year="all" class="active">Semua</button>
+    {years.map((y) => (
+      <button data-year={y}>{y}</button>
+    ))}
+  </div>
+
+  <div id="post-grid">
+    {posts.map((post) => (
+      <a
+        class="post-card"
+        href={`/blog/${post.slug}/`}
+        data-title={post.data.title.toLowerCase()}
+        data-year={post.data.pubDate.getFullYear()}
+      >
+        {post.data.heroImage && <img src={post.data.heroImage} alt={post.data.title} loading="lazy" />}
+        <h3>{post.data.title}</h3>
+        <time datetime={post.data.pubDate.toISOString()}>
+          {post.data.pubDate.toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' })}
+        </time>
+        <p>{post.data.description}</p>
+      </a>
+    ))}
+  </div>
+
+  <p id="no-results" hidden>Nggak ada artikel yang cocok.</p>
+</BaseLayout>
+
+<script>
+  const searchInput = document.getElementById('search') as HTMLInputElement;
+  const yearButtons = document.querySelectorAll<HTMLButtonElement>('#year-filter button');
+  const cards = document.querySelectorAll<HTMLAnchorElement>('.post-card');
+  const noResults = document.getElementById('no-results')!;
+
+  let activeYear = 'all';
+
+  function applyFilter() {
+    const query = searchInput.value.toLowerCase();
+    let visibleCount = 0;
+
+    cards.forEach((card) => {
+      const matchesSearch = card.dataset.title!.includes(query);
+      const matchesYear = activeYear === 'all' || card.dataset.year === activeYear;
+      const show = matchesSearch && matchesYear;
+      card.hidden = !show;
+      if (show) visibleCount++;
+    });
+
+    noResults.hidden = visibleCount > 0;
+  }
+
+  searchInput.addEventListener('input', applyFilter);
+
+  yearButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      yearButtons.forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeYear = btn.dataset.year!;
+      applyFilter();
+    });
+  });
+</script>

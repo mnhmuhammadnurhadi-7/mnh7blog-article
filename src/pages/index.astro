@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog'))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+---
+<BaseLayout
+  title="Home"
+  description="Portofolio dan tulisan Muhammad Nur Hadi seputar SEO, project coordination, dan digital product."
+>
+  <section>
+    <h1>Halo, saya Muhammad Nur Hadi 👋</h1>
+    <p>Project coordination, system analysis, dan SEO specialist. Berbagi tulisan seputar strategi digital.</p>
+  </section>
+
+  <section>
+    <h2>Artikel Terbaru</h2>
+    <ul>
+      {posts.map((post) => (
+        <li>
+          <a href={`/blog/${post.slug}/`}>{post.data.title}</a>
+          <p>{post.data.description}</p>
+        </li>
+      ))}
+    </ul>
+    <a href="/blog">Lihat semua artikel →</a>
+  </section>
+</BaseLayout>

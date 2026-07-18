@@ -1,0 +1,93 @@
+---
+export interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  canonicalUrl?: string; // pakai ini kalau artikel juga tayang di media lain
+  pubDate?: Date;
+  updatedDate?: Date;
+  isArticle?: boolean;
+}
+
+const {
+  title,
+  description,
+  image = '/og-default.jpg',
+  canonicalUrl,
+  pubDate,
+  updatedDate,
+  isArticle = false,
+} = Astro.props;
+
+const canonical = canonicalUrl ?? new URL(Astro.url.pathname, Astro.site).toString();
+const ogImage = new URL(image, Astro.site).toString();
+const siteName = 'Muhammad Nur Hadi';
+
+// JSON-LD structured data - bikin Google lebih ngerti konten kamu
+const jsonLd = isArticle
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'Article',
+      headline: title,
+      description,
+      image: ogImage,
+      datePublished: pubDate?.toISOString(),
+      dateModified: (updatedDate ?? pubDate)?.toISOString(),
+      author: { '@type': 'Person', name: siteName },
+    }
+  : {
+      '@context': 'https://schema.org',
+      '@type': 'Person',
+      name: siteName,
+      url: Astro.site?.toString(),
+    };
+---
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  <title>{title} | {siteName}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+
+  <!-- Open Graph / Facebook / LinkedIn -->
+  <meta property="og:type" content={isArticle ? 'article' : 'website'} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={ogImage} />
+  <meta property="og:site_name" content={siteName} />
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={ogImage} />
+
+  <!-- RSS autodiscovery -->
+  <link rel="alternate" type="application/rss+xml" title={siteName} href="/rss.xml" />
+
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="/">{siteName}</a>
+      <a href="/about-me">About Me</a>
+      <a href="/portfolio">My Portfolio</a>
+      <a href="/blog">My Article</a>
+    </nav>
+  </header>
+
+  <main>
+    <slot />
+  </main>
+
+  <footer>
+    <p>&copy; {new Date().getFullYear()} {siteName}. Dibuat dengan Astro.</p>
+  </footer>
+</body>
+</html>
