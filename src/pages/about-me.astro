@@ -1,0 +1,210 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout
+  title="About Me"
+  description="Tentang Muhammad Nur Hadi, project coordinator, system analyst, dan SEO specialist yang membangun produk digital terstruktur dan mudah ditemukan di hasil pencarian."
+>
+  <section class="about-hero">
+    <p class="meta-strip">About Me</p>
+    <h1>Muhammad Nur Hadi</h1>
+    <p class="hero-copy">Project coordinator, system analyst, dan SEO specialist yang membantu produk digital terstruktur dan mudah ditemukan.</p>
+  </section>
+
+  <section class="section-section">
+    <div class="section-header">
+      <h2>Apa yang saya kerjakan</h2>
+    </div>
+    <div class="work-grid">
+      <article class="card work-card">
+        <h3>Project Coordination</h3>
+        <p>[PLACEHOLDER: isi detail peran koordinasi proyek di sini]</p>
+      </article>
+      <article class="card work-card">
+        <h3>System Analysis</h3>
+        <p>[PLACEHOLDER: isi detail pendekatan analisis sistem di sini]</p>
+      </article>
+      <article class="card work-card">
+        <h3>SEO Specialist</h3>
+        <p>[PLACEHOLDER: isi detail tentang strategi SEO yang Anda fokuskan di sini]</p>
+      </article>
+      <article class="card work-card">
+        <h3>Digital Product Work</h3>
+        <p>[PLACEHOLDER: isi detail kontribusi produk digital di sini]</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section-section">
+    <div class="section-header">
+      <h2>Perjalanan singkat</h2>
+    </div>
+    <ul class="timeline">
+      <li>
+        <span class="timeline-year">[Tahun]</span>
+        <p>[PLACEHOLDER: deskripsi singkat perjalanan atau pencapaian di tahun ini]</p>
+      </li>
+      <li>
+        <span class="timeline-year">[Tahun]</span>
+        <p>[PLACEHOLDER: deskripsi singkat perjalanan atau pencapaian di tahun ini]</p>
+      </li>
+      <li>
+        <span class="timeline-year">[Tahun]</span>
+        <p>[PLACEHOLDER: deskripsi singkat perjalanan atau pencapaian di tahun ini]</p>
+      </li>
+    </ul>
+  </section>
+
+  <section class="section-section cta-section">
+    <h2>Ingin tahu lebih lanjut?</h2>
+    <div class="cta-grid">
+      <a class="btn-primary" href="/blog">My Article</a>
+      <a class="btn-secondary" href="https://mnurhadi-porto.vercel.app/">My Portfolio</a>
+      <a class="contact-link" href="mailto:hello@example.com">hello@example.com</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .about-hero {
+    max-width: 780px;
+    padding: 3rem 0 2rem;
+  }
+
+  .about-hero h1 {
+    font-size: clamp(2.5rem, 4vw, 4rem);
+    margin: 0.5rem 0 1rem;
+  }
+
+  .hero-copy {
+    max-width: 720px;
+    color: var(--text-secondary);
+    font-size: 1.0625rem;
+    line-height: 1.8;
+  }
+
+  .section-section {
+    margin-top: 3rem;
+  }
+
+  .section-header {
+    margin-bottom: 1.5rem;
+  }
+
+  .work-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+
+  .work-card {
+    min-height: 160px;
+    background-color: var(--surface);
+  }
+
+  .work-card h3 {
+    margin-bottom: 0.75rem;
+    font-size: 1.125rem;
+  }
+
+  .work-card p {
+    color: var(--text-secondary);
+    line-height: 1.75;
+  }
+
+  .timeline {
+    list-style: none;
+    display: grid;
+    gap: 1rem;
+    padding-left: 0;
+    margin: 0;
+  }
+
+  .timeline li {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1rem;
+    align-items: start;
+    padding: 1rem 1.25rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--surface);
+  }
+
+  .timeline-year {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.9375rem;
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  .timeline p {
+    margin: 0;
+    color: var(--text-secondary);
+    line-height: 1.75;
+  }
+
+  .cta-section {
+    padding: 2rem 0 4rem;
+  }
+
+  .cta-grid {
+    display: grid;
+    grid-template-columns: minmax(0, max-content);
+    gap: 1rem;
+    align-items: start;
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    border: 1px solid var(--accent);
+    border-radius: 4px;
+    color: var(--accent);
+    text-decoration: none;
+    transition: background-color 150ms ease, color 150ms ease;
+  }
+
+  .btn-secondary:hover {
+    background-color: rgba(15, 156, 140, 0.08);
+  }
+
+  .btn-secondary:focus,
+  .contact-link:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  .contact-link {
+    color: var(--text-primary);
+    text-decoration: none;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.9375rem;
+  }
+
+  .contact-link:hover {
+    color: var(--accent);
+  }
+
+  @media (max-width: 900px) {
+    .work-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .timeline li {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .about-hero {
+      padding-top: 2rem;
+    }
+
+    .cta-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

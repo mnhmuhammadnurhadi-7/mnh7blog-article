@@ -1,182 +1,142 @@
-:root {
-  /* Warna - 7 token sesuai desain-instruksi.md */
-  --bg: #FAFAF9;
-  --surface: #F1F3F2;
-  --text-primary: #12181B;
-  --text-secondary: #5B6B68;
-  --accent: #0F9C8C;
-  --accent-warn: #FF8A3D;
-  --border: #DCE3E1;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-/* Reset dan base styles */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  font-family: 'IBM Plex Sans', system-ui, sans-serif;
-  background-color: var(--bg);
-  color: var(--text-primary);
-  line-height: 1.7;
-  font-size: 1.0625rem; /* 17px */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-/* Tipografi */
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-weight: 700;
-  line-height: 1.15;
-  color: var(--text-primary);
-}
-
-h1 {
-  font-size: 2.5rem;
-  font-weight: 700;
-}
-
-h2 {
-  font-size: 1.75rem;
-  font-weight: 600;
-  line-height: 1.25;
-}
-
-h3 {
-  font-size: 1.5rem;
-  font-weight: 600;
-  line-height: 1.3;
-}
-
-/* Mono font untuk metadata */
-.meta-strip,
-.date,
-.reading-time,
-.tag,
-.breadcrumb {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.8125rem; /* 13px */
-  font-weight: 500;
-  letter-spacing: 0.02em;
-  color: var(--text-secondary);
-}
-
-/* Link */
-a {
-  color: var(--accent);
-  text-decoration: underline;
-  text-decoration-color: var(--accent);
-  text-underline-offset: 2px;
-  transition: text-decoration-color 150ms ease;
-}
-
-a:hover {
-  text-decoration-color: transparent;
-}
-
-a:focus {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
-}
-
-/* Tombol utama */
-.btn-primary {
-  background-color: var(--accent);
-  color: white;
-  text-decoration: none;
-  border-radius: 4px;
-  padding: 0.75rem 1.5rem;
-  font-weight: 500;
-  border: none;
-  cursor: pointer;
-  transition: background-color 150ms ease;
-}
-
-.btn-primary:hover {
-  background-color: #0c8a7b;
-  text-decoration: none;
-}
-
-.btn-primary:focus {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
-}
-
-/* Tag/badge */
-.tag {
-  background-color: var(--surface);
-  color: var(--accent-warn);
-  padding: 0.25rem 0.5rem;
-  border-radius: 3px;
-  font-size: 0.75rem;
-  text-decoration: none;
-  display: inline-block;
-}
-
-/* Card */
-.card {
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: 1.25rem;
-  background-color: var(--bg);
-  transition: border-color 150ms ease;
-}
-
-.card:hover {
-  border-color: var(--accent);
-}
-
-.card:focus-within {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
-}
-
-/* Meta signature element - seperti komentar kode */
-.meta-strip {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.8125rem;
-  color: var(--text-secondary);
-  margin: 0.5rem 0;
-  line-height: 1.5;
-}
-
-/* Container untuk konten artikel */
-.article-content {
-  max-width: 680px;
-  margin: 0 auto;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  h1 {
-    font-size: 2rem;
+@layer base {
+  :root {
+    --bg-primary: #f8fafc;
+    --bg-secondary: #f1f5f9;
+    --text-primary: #0f172a;
+    --text-secondary: #64748b;
+    --border-color: #e2e8f0;
+    /* Gradient orbs — soft teal & purple seperti portofolio */
+    --bg-gradient-start: #f8fafc;
+    --bg-gradient-mid: #f0f9ff;
+    --bg-gradient-end: #fdf4ff;
+    --accent-1: #3b82f6;
+    --accent-2: #8b5cf6;
+    --accent-3: #10b981;
+    --accent-4: #ec4899;
   }
-  
-  h2 {
-    font-size: 1.5rem;
-  }
-  
-  body {
-    font-size: 1rem;
-  }
-}
 
-/* Reduced motion */
-@media (prefers-reduced-motion: reduce) {
+  .dark {
+    --bg-primary: #0a0e27;
+    --bg-secondary: #1a1f3a;
+    --text-primary: #f9fafb;
+    --text-secondary: #9ca3af;
+    --border-color: #374151;
+    --bg-gradient-start: #0a0e27;
+    --bg-gradient-mid: #1a1f3a;
+    --bg-gradient-end: #050818;
+    --accent-1: #3b82f6;
+    --accent-2: #8b5cf6;
+    --accent-3: #10b981;
+    --accent-4: #ec4899;
+  }
+
+  /* reset: jangan pakai utilitas tidak dikenal seperti `border-border` */
   * {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+    box-sizing: border-box;
   }
-  
+
+  body {
+    background-color: transparent;
+    color: var(--text-primary);
+    transition: background-color 0.3s, color 0.3s;
+  }
+
   html {
-    scroll-behavior: auto;
+    scroll-behavior: smooth;
+    /* Ensure html element is styled with the background color variables to prevent white flash */
+    background-color: var(--bg-primary);
   }
 }
+
+@layer components {
+  .glass {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .glass-dark {
+    background: rgba(10, 14, 39, 0.5);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  html:not(.dark) .glass-dark {
+    background: rgba(255, 255, 255, 0.8);
+    border-color: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+  }
+
+  .neon-text {
+    text-shadow: 0 0 10px currentColor, 0 0 20px currentColor;
+  }
+
+  .neon-border {
+    box-shadow: 0 0 5px currentColor, 0 0 10px currentColor;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Theme consistency overrides - HINDARI transition pada elements dengan animation */
+:root {
+  transition: color 0.18s ease, background-color 0.18s ease;
+}
+
+/* Headings with gradient accents */
+.hero-title, .article-title, .section-title, .related-title {
+  background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* General text colors */
+.hero-subtitle,
+.post-meta,
+.post-excerpt,
+.article-content,
+.related-meta,
+.breadcrumb,
+#no-results {
+  color: var(--text-secondary) !important;
+}
+
+.post-title,
+.related-card-title {
+  color: var(--text-primary) !important;
+}
+
+/* Links and accents — hanya untuk konten artikel, BUKAN nav/logo */
+.article-content a, .btn-link {
+  color: var(--accent-2) !important;
+}
+
+/* Controls and cards */
+.btn-primary {
+  color: var(--text-primary) !important;
+}
+.chip, .search-input, .toc-toggle, .post-card, .related-card {
+  border-color: var(--border-color) !important;
+  background: rgba(255,255,255,0.02);
+}
+
+/* Code / pre / blockquote */
+code, pre, blockquote {
+  color: var(--text-secondary) !important;
+  background: rgba(255,255,255,0.02) !important;
+  border-color: rgba(139,92,246,0.06) !important;
+}
+
+/* Progress bar accent */
+.progress-bar {
+  background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+}
+

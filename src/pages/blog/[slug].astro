@@ -66,19 +66,24 @@ const tocItems = Array.from(headings).map((match) => ({
 
     <!-- Article header -->
     <header class="article-header">
-      <h1>{post.data.title}</h1>
+      <h1 class="article-title">{post.data.title}</h1>
       
-      <!-- Meta strip - signature element -->
-      <div class="meta-strip">
-        // {formatDate(post.data.pubDate)} · {calculateReadingTime(post.body || '')}
+      <!-- Meta strip -->
+      <div class="article-meta">
+        <span class="meta-item">{formatDate(post.data.pubDate)}</span>
+        <span class="meta-item">·</span>
+        <span class="meta-item">{calculateReadingTime(post.body || '')}</span>
         {post.data.tags && post.data.tags.length > 0 && (
-          <> · Tag: {post.data.tags.join(', ')}</>
+          <>
+            <span class="meta-item">·</span>
+            <span class="meta-item">Tag: {post.data.tags.join(', ')}</span>
+          </>
         )}
       </div>
 
       {post.data.canonicalUrl && (
-        <div class="meta-strip">
-          // canonical: {new URL(post.data.canonicalUrl).hostname} ↗
+        <div class="canonical-info">
+          <span class="canonical-text">canonical: {new URL(post.data.canonicalUrl).hostname} ↗</span>
         </div>
       )}
 
@@ -93,7 +98,7 @@ const tocItems = Array.from(headings).map((match) => ({
 
     <!-- TOC (desktop sticky, mobile collapsible) -->
     {tocItems.length > 0 && (
-      <aside class="toc-container">
+      <aside class="toc-container glass-dark">
         <button 
           id="toc-toggle" 
           class="toc-toggle"
@@ -103,7 +108,7 @@ const tocItems = Array.from(headings).map((match) => ({
           Daftar Isi
         </button>
         <nav id="toc-list" class="toc-list">
-          <h4>Daftar Isi</h4>
+          <h4 class="toc-title">Daftar Isi</h4>
           <ul>
             {tocItems.map((item) => (
               <li class={`toc-level-${item.level}`}>
@@ -118,13 +123,13 @@ const tocItems = Array.from(headings).map((match) => ({
     )}
 
     <!-- Article content -->
-    <div class="article-content">
+    <div class="article-content glass-dark">
       <Content />
     </div>
 
     <!-- Canonical attribution -->
     {post.data.canonicalUrl && (
-      <div class="attribution">
+      <div class="attribution glass-dark">
         <p>
           Artikel ini pertama kali dipublikasikan di{' '}
           <a href={post.data.canonicalUrl} target="_blank" rel="noopener noreferrer">
@@ -137,10 +142,10 @@ const tocItems = Array.from(headings).map((match) => ({
     <!-- Related articles -->
     {relatedPosts.length > 0 && (
       <section class="related-posts">
-        <h3>Artikel Terkait</h3>
+        <h3 class="related-title">Artikel Terkait</h3>
         <div class="related-grid">
           {relatedPosts.map((relatedPost) => (
-            <a class="card related-card" href={`/blog/${relatedPost.slug}/`}>
+            <a class="related-card glass-dark" href={`/blog/${relatedPost.slug}/`}>
               {relatedPost.data.heroImage && (
                 <img 
                   src={relatedPost.data.heroImage} 
@@ -148,9 +153,9 @@ const tocItems = Array.from(headings).map((match) => ({
                   class="card-image"
                 />
               )}
-              <h4>{relatedPost.data.title}</h4>
-              <div class="meta-strip">
-                // {formatDate(relatedPost.data.pubDate)}
+              <h4 class="related-card-title">{relatedPost.data.title}</h4>
+              <div class="related-meta">
+                <span class="meta-item">{formatDate(relatedPost.data.pubDate)}</span>
               </div>
             </a>
           ))}
@@ -203,7 +208,7 @@ const tocItems = Array.from(headings).map((match) => ({
     top: 0;
     left: 0;
     height: 2px;
-    background: var(--accent);
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6);
     width: 0%;
     z-index: 1000;
     transition: width 50ms ease;
@@ -224,70 +229,95 @@ const tocItems = Array.from(headings).map((match) => ({
   }
 
   .breadcrumb {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.8125rem;
-    color: var(--text-secondary);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem;
+    color: #9ca3af;
     margin-bottom: 1.5rem;
   }
 
   .breadcrumb a {
-    color: var(--text-secondary);
+    color: #9ca3af;
     text-decoration: none;
+    transition: color 0.3s ease;
   }
 
   .breadcrumb a:hover {
-    color: var(--accent);
+    color: #8b5cf6;
   }
 
   .breadcrumb span {
-    color: var(--text-primary);
+    color: #f9fafb;
   }
 
   .article-header {
     margin-bottom: 2rem;
   }
 
-  .article-header h1 {
+  .article-title {
+    font-family: 'Sora', sans-serif;
     font-size: 2.5rem;
     font-weight: 700;
     line-height: 1.15;
     margin-bottom: 1rem;
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 
-  .meta-strip {
-    font-family: 'IBM Plex Mono', monospace;
+  .article-meta {
+    display: flex;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: #9ca3af;
+    margin-bottom: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .canonical-info {
+    margin-top: 0.5rem;
+  }
+
+  .canonical-text {
+    font-family: 'Inter', monospace;
     font-size: 0.8125rem;
-    color: var(--text-secondary);
+    color: #f97316;
     font-weight: 500;
-    letter-spacing: 0.02em;
-    margin: 0.5rem 0;
-    line-height: 1.5;
   }
 
   .hero-image {
     width: 100%;
     max-height: 400px;
     object-fit: cover;
-    border-radius: 6px;
+    border-radius: 1rem;
     margin-top: 1.5rem;
   }
 
   .toc-container {
     display: none;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
   }
 
   .toc-toggle {
     display: none;
     width: 100%;
-    padding: 0.75rem 1rem;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    font-family: 'IBM Plex Mono', monospace;
+    padding: 0.875rem 1rem;
+    background: rgba(26, 31, 58, 0.5);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    border-radius: 0.75rem;
+    font-family: 'Inter', sans-serif;
     font-size: 0.875rem;
     cursor: pointer;
     text-align: left;
     margin-bottom: 1rem;
+    color: #f9fafb;
+    transition: all 0.3s ease;
+  }
+
+  .toc-toggle:hover {
+    border-color: #8b5cf6;
   }
 
   .toc-list {
@@ -298,11 +328,12 @@ const tocItems = Array.from(headings).map((match) => ({
     display: block;
   }
 
-  .toc-list h4 {
+  .toc-title {
+    font-family: 'Sora', sans-serif;
     font-size: 0.875rem;
     font-weight: 600;
     margin-bottom: 0.75rem;
-    color: var(--text-primary);
+    color: #f9fafb;
   }
 
   .toc-list ul {
@@ -315,16 +346,16 @@ const tocItems = Array.from(headings).map((match) => ({
   }
 
   .toc-list a {
-    color: var(--text-secondary);
+    color: #9ca3af;
     text-decoration: none;
     font-size: 0.875rem;
     display: block;
     padding: 0.25rem 0;
-    transition: color 150ms ease;
+    transition: color 0.3s ease;
   }
 
   .toc-list a:hover {
-    color: var(--accent);
+    color: #8b5cf6;
   }
 
   .toc-level-3 {
@@ -334,33 +365,40 @@ const tocItems = Array.from(headings).map((match) => ({
   .article-content {
     max-width: 680px;
     margin: 0 auto;
+    padding: 2rem;
+    border-radius: 1rem;
   }
 
   .article-content :global(h2) {
+    font-family: 'Sora', sans-serif;
     font-size: 1.75rem;
     font-weight: 600;
     margin-top: 2.5rem;
     margin-bottom: 1rem;
     scroll-margin-top: 2rem;
+    color: #f9fafb;
   }
 
   .article-content :global(h3) {
+    font-family: 'Sora', sans-serif;
     font-size: 1.5rem;
     font-weight: 600;
     margin-top: 2rem;
     margin-bottom: 0.75rem;
     scroll-margin-top: 2rem;
+    color: #f9fafb;
   }
 
   .article-content :global(p) {
     margin-bottom: 1.5rem;
     line-height: 1.7;
+    color: #d1d5db;
   }
 
   .article-content :global(a) {
-    color: var(--accent);
+    color: #8b5cf6;
     text-decoration: underline;
-    text-decoration-color: var(--accent);
+    text-decoration-color: #8b5cf6;
   }
 
   .article-content :global(a:hover) {
@@ -370,68 +408,78 @@ const tocItems = Array.from(headings).map((match) => ({
   .article-content :global(img) {
     max-width: 100%;
     height: auto;
-    border-radius: 6px;
+    border-radius: 1rem;
     margin: 1.5rem 0;
   }
 
   .article-content :global(code) {
-    background: var(--surface);
+    background: rgba(26, 31, 58, 0.5);
     padding: 0.2rem 0.4rem;
-    border-radius: 3px;
-    font-family: 'IBM Plex Mono', monospace;
+    border-radius: 0.375rem;
+    font-family: 'Inter', monospace;
     font-size: 0.875rem;
+    color: #60a5fa;
   }
 
   .article-content :global(pre) {
-    background: var(--surface);
+    background: rgba(26, 31, 58, 0.5);
     padding: 1rem;
-    border-radius: 6px;
+    border-radius: 0.75rem;
     overflow-x: auto;
     margin: 1.5rem 0;
+    border: 1px solid rgba(139, 92, 246, 0.2);
   }
 
   .article-content :global(pre code) {
     background: none;
     padding: 0;
+    color: #d1d5db;
   }
 
   .article-content :global(blockquote) {
-    border-left: 3px solid var(--accent);
+    border-left: 3px solid #8b5cf6;
     padding-left: 1rem;
     margin: 1.5rem 0;
-    color: var(--text-secondary);
+    color: #9ca3af;
     font-style: italic;
+    background: rgba(139, 92, 246, 0.1);
+    padding: 1rem;
+    border-radius: 0 0.5rem 0.5rem 0;
   }
 
   .attribution {
     margin-top: 3rem;
-    padding: 1rem;
-    background: var(--surface);
-    border-radius: 6px;
-    border-left: 3px solid var(--accent-warn);
+    padding: 1.5rem;
+    border-radius: 1rem;
+    border-left: 3px solid #f97316;
   }
 
   .attribution p {
     font-size: 0.875rem;
-    color: var(--text-secondary);
+    color: #9ca3af;
     margin: 0;
   }
 
   .attribution a {
-    color: var(--accent-warn);
+    color: #f97316;
     text-decoration: underline;
   }
 
   .related-posts {
     margin-top: 4rem;
     padding-top: 2rem;
-    border-top: 1px solid var(--border);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
   }
 
-  .related-posts h3 {
+  .related-title {
+    font-family: 'Sora', sans-serif;
     font-size: 1.5rem;
     font-weight: 600;
     margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 
   .related-grid {
@@ -444,29 +492,41 @@ const tocItems = Array.from(headings).map((match) => ({
     text-decoration: none;
     display: flex;
     flex-direction: column;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
   }
 
   .related-card:hover {
-    border-color: var(--accent);
+    transform: translateY(-5px);
+    border-color: rgba(139, 92, 246, 0.5);
+    box-shadow: 0 10px 30px rgba(139, 92, 246, 0.2);
   }
 
-  .related-card h4 {
+  .related-card-title {
+    font-family: 'Sora', sans-serif;
     font-size: 1rem;
     font-weight: 600;
     margin: 0.75rem 0;
-    color: var(--text-primary);
-    transition: color 150ms ease;
+    color: #f9fafb;
+    transition: color 0.3s ease;
   }
 
-  .related-card:hover h4 {
-    color: var(--accent);
+  .related-card:hover .related-card-title {
+    color: #8b5cf6;
+  }
+
+  .related-meta {
+    font-size: 0.875rem;
+    color: #9ca3af;
   }
 
   .related-card .card-image {
     width: 100%;
     height: 150px;
     object-fit: cover;
-    border-radius: 4px;
+    border-radius: 0.75rem;
   }
 
   @media (min-width: 1024px) {
@@ -518,12 +578,18 @@ const tocItems = Array.from(headings).map((match) => ({
       display: block;
     }
 
-    .article-header h1 {
+    .article-title {
       font-size: 2rem;
     }
 
     .hero-image {
       max-height: 300px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .related-card:hover {
+      transform: none;
     }
   }
 </style>

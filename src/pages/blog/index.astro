@@ -28,7 +28,7 @@ function calculateReadingTime(content: string) {
 ---
 <BaseLayout title="Semua Artikel" description="Kumpulan tulisan Muhammad Nur Hadi seputar SEO, teknologi, dan pengembangan diri.">
   <div class="page-header">
-    <h1>Semua Artikel</h1>
+    <h1 class="page-title">Semua Artikel</h1>
     
     <div class="search-filter">
       <input
@@ -36,7 +36,7 @@ function calculateReadingTime(content: string) {
         id="search"
         placeholder="Cari artikel..."
         aria-label="Cari artikel"
-        class="search-input"
+        class="search-input glass-dark"
       />
 
       <div id="year-filter" class="year-chips">
@@ -51,7 +51,7 @@ function calculateReadingTime(content: string) {
   <div id="post-grid" class="posts-grid">
     {posts.map((post) => (
       <a
-        class="card post-card"
+        class="post-card glass-dark"
         href={`/blog/${post.slug}/`}
         data-title={post.data.title.toLowerCase()}
         data-year={post.data.pubDate.getFullYear()}
@@ -64,15 +64,17 @@ function calculateReadingTime(content: string) {
             class="card-image"
           />
         )}
-        <h3>{post.data.title}</h3>
-        <div class="meta-strip">
-          // {formatDate(post.data.pubDate)} · {calculateReadingTime(post.body || '')}
+        <h3 class="post-title">{post.data.title}</h3>
+        <div class="post-meta">
+          <span class="meta-item">{formatDate(post.data.pubDate)}</span>
+          <span class="meta-item">·</span>
+          <span class="meta-item">{calculateReadingTime(post.body || '')}</span>
         </div>
-        <p class="excerpt">{post.data.description}</p>
+        <p class="post-excerpt">{post.data.description}</p>
         {post.data.tags && post.data.tags.length > 0 && (
-          <div class="tags">
+          <div class="post-tags">
             {post.data.tags.slice(0, 3).map((tag) => (
-              <span class="tag">{tag}</span>
+              <span class="post-tag">{tag}</span>
             ))}
           </div>
         )}
@@ -123,10 +125,15 @@ function calculateReadingTime(content: string) {
     margin-bottom: 2rem;
   }
 
-  .page-header h1 {
-    font-size: 2rem;
+  .page-title {
+    font-family: 'Sora', sans-serif;
+    font-size: 2.5rem;
     font-weight: 700;
     margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 
   .search-filter {
@@ -136,18 +143,25 @@ function calculateReadingTime(content: string) {
   }
 
   .search-input {
-    padding: 0.75rem 1rem;
-    border: 1px solid var(--border);
-    border-radius: 4px;
+    padding: 0.875rem 1.25rem;
+    border: 1px solid rgba(139, 92, 246, 0.22);
+    border-radius: 0.75rem;
     font-size: 1rem;
-    font-family: 'IBM Plex Sans', sans-serif;
+    font-family: 'Inter', sans-serif;
     max-width: 400px;
-    transition: border-color 150ms ease;
+    background: rgba(26, 31, 58, 0.18);
+    color: var(--text-primary);
+    transition: all 0.3s ease;
+  }
+
+  .search-input::placeholder {
+    color: var(--text-secondary);
   }
 
   .search-input:focus {
     outline: none;
-    border-color: var(--accent);
+    border-color: var(--accent-2);
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.12);
   }
 
   .year-chips {
@@ -158,71 +172,86 @@ function calculateReadingTime(content: string) {
 
   .chip {
     padding: 0.5rem 1rem;
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    background: var(--bg);
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.8125rem;
+    border: 1px solid rgba(139, 92, 246, 0.22);
+    border-radius: 9999px;
+    background: rgba(26, 31, 58, 0.12);
+    color: var(--text-secondary);
+    font-size: 0.875rem;
     cursor: pointer;
-    transition: all 150ms ease;
+    transition: all 0.3s ease;
   }
 
   .chip:hover {
-    border-color: var(--accent);
+    border-color: var(--accent-2);
+    color: var(--text-primary);
   }
 
   .chip.active {
-    background: var(--accent);
-    color: white;
-    border-color: var(--accent);
+    background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+    color: var(--text-primary);
+    border-color: transparent;
   }
 
   .chip:focus {
-    outline: 2px solid var(--accent);
+    outline: 2px solid var(--accent-2);
     outline-offset: 2px;
   }
 
   .posts-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
+    gap: 2rem;
   }
 
   .post-card {
     display: flex;
     flex-direction: column;
     text-decoration: none;
-    transition: border-color 150ms ease;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.06);
   }
 
   .post-card:hover {
-    border-color: var(--accent);
-  }
-
-  .post-card:hover h3 {
-    color: var(--accent);
+    transform: translateY(-5px);
+    border-color: rgba(139, 92, 246, 0.28);
+    box-shadow: 0 10px 30px rgba(139, 92, 246, 0.14);
   }
 
   .card-image {
     width: 100%;
     height: 200px;
     object-fit: cover;
-    border-radius: 4px;
+    border-radius: 0.75rem;
     margin-bottom: 1rem;
   }
 
-  .post-card h3 {
-    font-size: 1.125rem;
+  .post-title {
+    font-family: 'Sora', sans-serif;
+    font-size: 1.25rem;
     font-weight: 600;
     margin: 0.75rem 0;
-    color: var(--text-primary);
-    transition: color 150ms ease;
+    color: #f9fafb;
+    transition: color 0.3s ease;
     line-height: 1.4;
   }
 
-  .excerpt {
-    color: var(--text-secondary);
+  .post-card:hover .post-title {
+    color: #8b5cf6;
+  }
+
+  .post-meta {
+    display: flex;
+    gap: 0.5rem;
     font-size: 0.875rem;
+    color: #9ca3af;
+    margin-bottom: 0.75rem;
+  }
+
+  .post-excerpt {
+    color: #9ca3af;
+    font-size: 0.9375rem;
     line-height: 1.6;
     margin-bottom: 1rem;
     display: -webkit-box;
@@ -231,16 +260,25 @@ function calculateReadingTime(content: string) {
     overflow: hidden;
   }
 
-  .tags {
+  .post-tags {
     display: flex;
     gap: 0.5rem;
     flex-wrap: wrap;
     margin-top: auto;
   }
 
+  .post-tag {
+    padding: 0.25rem 0.75rem;
+    background: rgba(59, 130, 246, 0.2);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    color: #60a5fa;
+  }
+
   .no-results {
     text-align: center;
-    color: var(--text-secondary);
+    color: #9ca3af;
     font-size: 1rem;
     padding: 2rem;
     display: none;
@@ -261,8 +299,14 @@ function calculateReadingTime(content: string) {
       max-width: 100%;
     }
 
-    .page-header h1 {
-      font-size: 1.75rem;
+    .page-title {
+      font-size: 2rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .post-card:hover {
+      transform: none;
     }
   }
 </style>
