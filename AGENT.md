@@ -15,8 +15,7 @@ tanpa konfirmasi.
 
 - **Framework**: Astro 7.1.1 (static output, bukan SSR)
 - **Content**: Markdown/MDX lewat Astro Content Collections; konfigurasi konten berada di `src/content.config.ts`.
-- **Styling**: belum ada CSS framework terpasang — kalau menambahkan, tanya dulu preferensi
-  (Tailwind vs vanilla CSS) sebelum install
+- **Styling**: Tailwind CSS 4.3.3 dengan PostCSS + custom theme (navy & neon colors)
 - **Hosting**: Vercel (auto-deploy dari branch `main`)
 - **Bahasa konten**: Bahasa Indonesia (`lang="id"` di semua halaman)
 
@@ -24,19 +23,25 @@ tanpa konfirmasi.
 
 ```
 src/
+  components/
+    AnimatedBackground.astro  # Background animasi dengan gradient bubbles, dot grid, geometric shapes
+    FloatingIcons.astro        # Icon teknologi yang melayang di background
   content/
     config.ts          # schema frontmatter artikel (JANGAN ubah field wajib tanpa alasan kuat)
     blog/*.md           # artikel, 1 file per artikel
   layouts/
     BaseLayout.astro    # SEMUA meta tag SEO ada di sini (title, description, OG, canonical, JSON-LD)
   pages/
-    index.astro          # homepage
-    blog/index.astro      # halaman "My Article" — list + search + filter tahun
+    index.astro          # homepage dengan hero section dan latest posts
+    blog/index.astro      # halaman list artikel dengan grid layout
     blog/[slug].astro     # halaman detail artikel (dynamic route)
+    about-me.astro        # halaman about dengan skills grid
     rss.xml.js            # RSS feed, auto-generate dari content collection
 public/
   robots.txt             # jangan lupa update kalau domain final berubah
 astro.config.mjs         # field `site` HARUS selalu sesuai domain production
+tailwind.config.js       # konfigurasi Tailwind CSS dengan custom theme
+postcss.config.js        # konfigurasi PostCSS
 ```
 
 ## Aturan Wajib (Jangan Dilanggar)
@@ -83,35 +88,49 @@ menghargai pemahaman "kenapa", bukan cuma "apa"-nya.
 
 ## Progres Implementasi Desain
 
-Desain system telah diimplementasikan berdasarkan `desain-instruksi.md` pada 18 Juli 2026:
+Desain modern dengan animasi dan Tailwind CSS telah diimplementasikan:
 
 ### ✅ Selesai
-- **Sistem warna (7 token)**: CSS variables untuk `--bg`, `--surface`, `--text-primary`, `--text-secondary`, `--accent`, `--accent-warn`, `--border`
-- **Tipografi**: Import Google Fonts (Space Grotesk, IBM Plex Sans, IBM Plex Mono) dengan skala tipe sesuai brief
-- **BaseLayout**: Header/footer dengan styling, navigation links, dan global CSS integration
-- **Homepage**: Hero section dengan meta strip signature element, grid artikel terbaru
-- **Halaman blog list**: Grid 3 kolom (desktop) → 1 kolom (mobile), search input, year filter chips
-- **Halaman detail artikel**: 
-  - Breadcrumb navigation
-  - Meta strip signature element (tanggal, reading time, tags, canonical)
-  - TOC (sticky sidebar desktop, collapsible accordion mobile)
-  - Progress bar baca (2px, warna accent)
-  - Artikel terkait (3 card)
-  - Attribution canonical dengan aksen warna
-- **Komponen**: Tombol (radius 4px), tag/badge (warna accent-warn), card (border tipis, no shadow)
-- **Responsif**: Breakpoint desktop (>1024px), tablet (768-1024px), mobile (<768px)
-- **Aksesibilitas**: Focus states, `prefers-reduced-motion` support, kontras warna AA
+- **Tailwind CSS 4.3.3**: Full integration dengan PostCSS dan custom theme
+- **Custom Theme**: Navy & neon color palette dengan CSS variables
+- **Tipografi**: Google Fonts (Inter untuk body, Sora untuk display/headings)
+- **AnimatedBackground Component**: Gradient bubbles, dot grid, geometric shapes dengan animasi smooth
+- **FloatingIcons Component**: Icon teknologi yang melayang dengan hover effects dan glow
+- **BaseLayout**: 
+  - Header fixed dengan backdrop blur dan navigation
+  - Theme toggle (dark/light mode) dengan localStorage persistence
+  - Footer dengan copyright dan tech stack info
+  - Full SEO meta tags (title, description, OG, Twitter, JSON-LD)
+- **Homepage**: 
+  - Hero section dengan gradient text animation
+  - Neon tags dengan floating animation
+  - CTA buttons dengan gradient dan hover effects
+  - Latest posts grid dengan glass morphism cards
+- **Halaman blog list**: Grid responsive dengan card hover effects
+- **Halaman detail artikel**: Full article layout dengan meta information
+- **About-me page**: Skills grid dengan 6 kategori (Project & Coordination, System Analysis, SEO & Content, Technical, Deployment & Tools, Languages)
+- **Responsif**: Mobile-first approach dengan breakpoints untuk tablet dan desktop
+- **Dark/Light Mode**: Full theme support dengan smooth transitions
+- **Aksesibilitas**: Focus states, `prefers-reduced-motion` support
 
 ### 📁 File yang diubah/dibuat
-- `src/styles/global.css` (baru) - CSS variables dan global styles
-- `src/layouts/BaseLayout.astro` - Font imports dan layout styling
-- `src/pages/index.astro` - Homepage redesign dengan meta strip
-- `src/pages/blog/index.astro` - Blog list dengan grid 3 kolom dan filter
-- `src/pages/blog/[slug].astro` - Article detail dengan TOC, progress bar, meta strip
+- `src/components/AnimatedBackground.astro` (baru) - Background animasi kompleks
+- `src/components/FloatingIcons.astro` (baru) - Floating tech icons
+- `src/layouts/BaseLayout.astro` - Update dengan theme toggle, animated background, modern styling
+- `src/pages/index.astro` - Homepage redesign dengan hero section dan modern cards
+- `src/pages/blog/index.astro` - Blog list dengan grid layout
+- `src/pages/blog/[slug].astro` - Article detail layout
+- `src/pages/about-me.astro` (baru) - About page dengan skills grid
+- `tailwind.config.js` (baru) - Tailwind configuration dengan custom theme
+- `postcss.config.js` (baru) - PostCSS configuration
+- `package.json` - Update dependencies (Tailwind CSS, PostCSS, Autoprefixer)
 
 ### 🎨 Desain decisions
-- Menggunakan IBM Plex Mono untuk metadata (reading time, tanggal, tags) untuk kesan "developer comment"
-- Warna accent teal (#0F9C8C) melambangkan "data/analitis" sesuai positioning
-- Card hover hanya border color change (150ms), tanpa shadow/scale untuk kesan presisi
-- Lebar konten artikel max 680px untuk optimal reading experience
-- Progress bar hanya 2px tipis di atas halaman, fungsional bukan dekoratif
+- Menggunakan Inter (body) dan Sora (display) untuk modern, clean typography
+- Navy background (#0a0e27) dengan neon accent colors (blue, purple, emerald, cyan, pink, orange, yellow, indigo)
+- Glass morphism effects pada cards dengan backdrop blur
+- Gradient text animations untuk hero section
+- Smooth transitions dan hover effects untuk interaktivitas
+- Floating icons di background untuk kesan tech-focused
+- Theme toggle dengan localStorage untuk user preference persistence
+- Responsive grid layouts untuk semua screen sizes
