@@ -122,7 +122,14 @@ function calculateReadingTime(content: string) {
 
 <style>
   .page-header {
-    margin-bottom: 2rem;
+    padding: 6rem 1.5rem 2rem; /* pt-24 px-6 pb-8 */
+    margin-bottom: 0;
+  }
+
+  @media (min-width: 768px) {
+    .page-header {
+      padding: 6rem 2.5rem 2rem; /* pt-24 md:px-10 pb-8 */
+    }
   }
 
   .page-title {
@@ -201,6 +208,13 @@ function calculateReadingTime(content: string) {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
+    padding: 0 1.5rem 4rem; /* px-6 pb-16 */
+  }
+
+  @media (min-width: 768px) {
+    .posts-grid {
+      padding: 0 2.5rem 4rem; /* md:px-10 pb-16 */
+    }
   }
 
   .post-card {

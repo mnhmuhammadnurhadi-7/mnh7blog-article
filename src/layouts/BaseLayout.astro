@@ -189,6 +189,9 @@ const jsonLd = isArticle
   <style>
     body {
       font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
 
     /* ─── HEADER ─────────────────────────────────── */
@@ -342,7 +345,7 @@ const jsonLd = isArticle
       max-width: 100%;
       margin: 0;
       padding: 0;
-      min-height: calc(100vh - 16rem);
+      flex: 1;
       position: relative;
       z-index: 10;
     }

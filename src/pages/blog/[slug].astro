@@ -226,6 +226,13 @@ const tocItems = Array.from(headings).map((match) => ({
     gap: 2rem;
     max-width: 1200px;
     margin: 0 auto;
+    padding: 6rem 1.5rem 4rem; /* pt-24 px-6 pb-16 */
+  }
+
+  @media (min-width: 768px) {
+    .article-layout {
+      padding: 6rem 2.5rem 4rem; /* pt-24 md:px-10 pb-16 */
+    }
   }
 
   .breadcrumb {
