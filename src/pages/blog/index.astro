@@ -6,50 +6,86 @@ const posts = (await getCollection('blog')).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 
-// kumpulin semua tag unik buat filter, sekaligus contoh "filter by date" pakai tahun
-const years = [...new Set(posts.map((p) => p.data.pubDate.getFullYear()))];
+// kumpulin semua tahun unik buat filter
+const years = [...new Set(posts.map((p) => p.data.pubDate.getFullYear()))].sort((a, b) => b - a);
+
+// Helper untuk format tanggal
+function formatDate(date: Date) {
+  return date.toLocaleDateString('id-ID', { 
+    day: 'numeric', 
+    month: 'short', 
+    year: 'numeric' 
+  });
+}
+
+// Helper untuk hitung reading time
+function calculateReadingTime(content: string) {
+  const wordsPerMinute = 200;
+  const words = content.split(/\s+/).length;
+  const minutes = Math.ceil(words / wordsPerMinute);
+  return `${minutes} menit baca`;
+}
 ---
 <BaseLayout title="Semua Artikel" description="Kumpulan tulisan Muhammad Nur Hadi seputar SEO, teknologi, dan pengembangan diri.">
-  <h1>Semua Artikel</h1>
+  <div class="page-header">
+    <h1>Semua Artikel</h1>
+    
+    <div class="search-filter">
+      <input
+        type="text"
+        id="search"
+        placeholder="Cari artikel..."
+        aria-label="Cari artikel"
+        class="search-input"
+      />
 
-  <input
-    type="text"
-    id="search"
-    placeholder="Cari artikel..."
-    aria-label="Cari artikel"
-  />
-
-  <div id="year-filter">
-    <button data-year="all" class="active">Semua</button>
-    {years.map((y) => (
-      <button data-year={y}>{y}</button>
-    ))}
+      <div id="year-filter" class="year-chips">
+        <button data-year="all" class="chip active">Semua</button>
+        {years.map((y) => (
+          <button data-year={y} class="chip">{y}</button>
+        ))}
+      </div>
+    </div>
   </div>
 
-  <div id="post-grid">
+  <div id="post-grid" class="posts-grid">
     {posts.map((post) => (
       <a
-        class="post-card"
+        class="card post-card"
         href={`/blog/${post.slug}/`}
         data-title={post.data.title.toLowerCase()}
         data-year={post.data.pubDate.getFullYear()}
       >
-        {post.data.heroImage && <img src={post.data.heroImage} alt={post.data.title} loading="lazy" />}
+        {post.data.heroImage && (
+          <img 
+            src={post.data.heroImage} 
+            alt={post.data.title} 
+            loading="lazy"
+            class="card-image"
+          />
+        )}
         <h3>{post.data.title}</h3>
-        <time datetime={post.data.pubDate.toISOString()}>
-          {post.data.pubDate.toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' })}
-        </time>
-        <p>{post.data.description}</p>
+        <div class="meta-strip">
+          // {formatDate(post.data.pubDate)} · {calculateReadingTime(post.body || '')}
+        </div>
+        <p class="excerpt">{post.data.description}</p>
+        {post.data.tags && post.data.tags.length > 0 && (
+          <div class="tags">
+            {post.data.tags.slice(0, 3).map((tag) => (
+              <span class="tag">{tag}</span>
+            ))}
+          </div>
+        )}
       </a>
     ))}
   </div>
 
-  <p id="no-results" hidden>Nggak ada artikel yang cocok.</p>
+  <p id="no-results" class="no-results">Nggak ada artikel yang cocok.</p>
 </BaseLayout>
 
 <script>
   const searchInput = document.getElementById('search') as HTMLInputElement;
-  const yearButtons = document.querySelectorAll<HTMLButtonElement>('#year-filter button');
+  const yearButtons = document.querySelectorAll<HTMLButtonElement>('#year-filter .chip');
   const cards = document.querySelectorAll<HTMLAnchorElement>('.post-card');
   const noResults = document.getElementById('no-results')!;
 
@@ -63,11 +99,11 @@ const years = [...new Set(posts.map((p) => p.data.pubDate.getFullYear()))];
       const matchesSearch = card.dataset.title!.includes(query);
       const matchesYear = activeYear === 'all' || card.dataset.year === activeYear;
       const show = matchesSearch && matchesYear;
-      card.hidden = !show;
+      (card as HTMLElement).style.display = show ? 'flex' : 'none';
       if (show) visibleCount++;
     });
 
-    noResults.hidden = visibleCount > 0;
+    noResults.style.display = visibleCount > 0 ? 'none' : 'block';
   }
 
   searchInput.addEventListener('input', applyFilter);
@@ -81,3 +117,152 @@ const years = [...new Set(posts.map((p) => p.data.pubDate.getFullYear()))];
     });
   });
 </script>
+
+<style>
+  .page-header {
+    margin-bottom: 2rem;
+  }
+
+  .page-header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+  }
+
+  .search-filter {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .search-input {
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-size: 1rem;
+    font-family: 'IBM Plex Sans', sans-serif;
+    max-width: 400px;
+    transition: border-color 150ms ease;
+  }
+
+  .search-input:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+
+  .year-chips {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .chip {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: var(--bg);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.8125rem;
+    cursor: pointer;
+    transition: all 150ms ease;
+  }
+
+  .chip:hover {
+    border-color: var(--accent);
+  }
+
+  .chip.active {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+  }
+
+  .chip:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  .posts-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .post-card {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    transition: border-color 150ms ease;
+  }
+
+  .post-card:hover {
+    border-color: var(--accent);
+  }
+
+  .post-card:hover h3 {
+    color: var(--accent);
+  }
+
+  .card-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+  }
+
+  .post-card h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin: 0.75rem 0;
+    color: var(--text-primary);
+    transition: color 150ms ease;
+    line-height: 1.4;
+  }
+
+  .excerpt {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-top: auto;
+  }
+
+  .no-results {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 1rem;
+    padding: 2rem;
+    display: none;
+  }
+
+  @media (max-width: 1024px) {
+    .posts-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .posts-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .search-input {
+      max-width: 100%;
+    }
+
+    .page-header h1 {
+      font-size: 1.75rem;
+    }
+  }
+</style>

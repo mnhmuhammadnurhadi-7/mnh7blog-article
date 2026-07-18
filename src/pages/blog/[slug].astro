@@ -12,6 +12,39 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content } = await post.render();
+const allPosts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+// Artikel terkait (3 artikel selain yang sedang dibaca)
+const relatedPosts = allPosts
+  .filter((p) => p.slug !== post.slug)
+  .slice(0, 3);
+
+// Helper untuk format tanggal
+function formatDate(date: Date) {
+  return date.toLocaleDateString('id-ID', { 
+    day: 'numeric', 
+    month: 'short', 
+    year: 'numeric' 
+  });
+}
+
+// Helper untuk hitung reading time
+function calculateReadingTime(content: string) {
+  const wordsPerMinute = 200;
+  const words = content.split(/\s+/).length;
+  const minutes = Math.ceil(words / wordsPerMinute);
+  return `${minutes} menit baca`;
+}
+
+// Ekstrak heading untuk TOC
+const { remarkPlugin } = await post.render();
+const headings = post.body?.matchAll(/^#{2,3}\s+(.+)$/gm) || [];
+const tocItems = Array.from(headings).map((match) => ({
+  text: match[1].trim(),
+  level: match[0].startsWith('###') ? 3 : 2,
+}));
 ---
 <BaseLayout
   title={post.data.title}
@@ -22,21 +55,475 @@ const { Content } = await post.render();
   updatedDate={post.data.updatedDate}
   isArticle={true}
 >
-  <article>
-    <h1>{post.data.title}</h1>
-    <time datetime={post.data.pubDate.toISOString()}>
-      {post.data.pubDate.toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' })}
-    </time>
+  <!-- Progress bar -->
+  <div id="progress-bar" class="progress-bar"></div>
 
-    {post.data.heroImage && <img src={post.data.heroImage} alt={post.data.title} />}
+  <article class="article-layout">
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb">
+      <a href="/">Beranda</a> / <a href="/blog">Artikel</a> / <span>{post.data.title}</span>
+    </nav>
 
-    <Content />
+    <!-- Article header -->
+    <header class="article-header">
+      <h1>{post.data.title}</h1>
+      
+      <!-- Meta strip - signature element -->
+      <div class="meta-strip">
+        // {formatDate(post.data.pubDate)} · {calculateReadingTime(post.body || '')}
+        {post.data.tags && post.data.tags.length > 0 && (
+          <> · Tag: {post.data.tags.join(', ')}</>
+        )}
+      </div>
 
+      {post.data.canonicalUrl && (
+        <div class="meta-strip">
+          // canonical: {new URL(post.data.canonicalUrl).hostname} ↗
+        </div>
+      )}
+
+      {post.data.heroImage && (
+        <img 
+          src={post.data.heroImage} 
+          alt={post.data.title} 
+          class="hero-image"
+        />
+      )}
+    </header>
+
+    <!-- TOC (desktop sticky, mobile collapsible) -->
+    {tocItems.length > 0 && (
+      <aside class="toc-container">
+        <button 
+          id="toc-toggle" 
+          class="toc-toggle"
+          aria-expanded="false"
+          aria-controls="toc-list"
+        >
+          Daftar Isi
+        </button>
+        <nav id="toc-list" class="toc-list">
+          <h4>Daftar Isi</h4>
+          <ul>
+            {tocItems.map((item) => (
+              <li class={`toc-level-${item.level}`}>
+                <a href={`#${item.text.toLowerCase().replace(/\s+/g, '-')}`}>
+                  {item.text}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </aside>
+    )}
+
+    <!-- Article content -->
+    <div class="article-content">
+      <Content />
+    </div>
+
+    <!-- Canonical attribution -->
     {post.data.canonicalUrl && (
-      <p class="attribution">
-        Artikel ini pertama kali dipublikasikan di{' '}
-        <a href={post.data.canonicalUrl} target="_blank" rel="noopener">sumber aslinya</a>.
-      </p>
+      <div class="attribution">
+        <p>
+          Artikel ini pertama kali dipublikasikan di{' '}
+          <a href={post.data.canonicalUrl} target="_blank" rel="noopener noreferrer">
+            {new URL(post.data.canonicalUrl).hostname}
+          </a>.
+        </p>
+      </div>
+    )}
+
+    <!-- Related articles -->
+    {relatedPosts.length > 0 && (
+      <section class="related-posts">
+        <h3>Artikel Terkait</h3>
+        <div class="related-grid">
+          {relatedPosts.map((relatedPost) => (
+            <a class="card related-card" href={`/blog/${relatedPost.slug}/`}>
+              {relatedPost.data.heroImage && (
+                <img 
+                  src={relatedPost.data.heroImage} 
+                  alt={relatedPost.data.title}
+                  class="card-image"
+                />
+              )}
+              <h4>{relatedPost.data.title}</h4>
+              <div class="meta-strip">
+                // {formatDate(relatedPost.data.pubDate)}
+              </div>
+            </a>
+          ))}
+        </div>
+      </section>
     )}
   </article>
 </BaseLayout>
+
+<script>
+  // Progress bar
+  const progressBar = document.getElementById('progress-bar') as HTMLElement;
+  if (progressBar) {
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = (scrollTop / docHeight) * 100;
+      progressBar.style.width = `${scrollPercent}%`;
+    });
+  }
+
+  // TOC toggle untuk mobile
+  const tocToggle = document.getElementById('toc-toggle') as HTMLButtonElement;
+  const tocList = document.getElementById('toc-list') as HTMLElement;
+  
+  if (tocToggle && tocList) {
+    tocToggle.addEventListener('click', () => {
+      const isExpanded = tocToggle.getAttribute('aria-expanded') === 'true';
+      tocToggle.setAttribute('aria-expanded', (!isExpanded).toString());
+      tocList.classList.toggle('open');
+    });
+  }
+
+  // Smooth scroll untuk TOC links
+  document.querySelectorAll('.toc-list a').forEach((link) => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetId = link.getAttribute('href')?.slice(1);
+      const targetElement = document.getElementById(targetId || '');
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+</script>
+
+<style>
+  .progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 2px;
+    background: var(--accent);
+    width: 0%;
+    z-index: 1000;
+    transition: width 50ms ease;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .progress-bar {
+      display: none;
+    }
+  }
+
+  .article-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .breadcrumb {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+  }
+
+  .breadcrumb a {
+    color: var(--text-secondary);
+    text-decoration: none;
+  }
+
+  .breadcrumb a:hover {
+    color: var(--accent);
+  }
+
+  .breadcrumb span {
+    color: var(--text-primary);
+  }
+
+  .article-header {
+    margin-bottom: 2rem;
+  }
+
+  .article-header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+
+  .meta-strip {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    margin: 0.5rem 0;
+    line-height: 1.5;
+  }
+
+  .hero-image {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-top: 1.5rem;
+  }
+
+  .toc-container {
+    display: none;
+  }
+
+  .toc-toggle {
+    display: none;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.875rem;
+    cursor: pointer;
+    text-align: left;
+    margin-bottom: 1rem;
+  }
+
+  .toc-list {
+    display: none;
+  }
+
+  .toc-list.open {
+    display: block;
+  }
+
+  .toc-list h4 {
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: var(--text-primary);
+  }
+
+  .toc-list ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .toc-list li {
+    margin-bottom: 0.5rem;
+  }
+
+  .toc-list a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.875rem;
+    display: block;
+    padding: 0.25rem 0;
+    transition: color 150ms ease;
+  }
+
+  .toc-list a:hover {
+    color: var(--accent);
+  }
+
+  .toc-level-3 {
+    padding-left: 1rem;
+  }
+
+  .article-content {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .article-content :global(h2) {
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    scroll-margin-top: 2rem;
+  }
+
+  .article-content :global(h3) {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    scroll-margin-top: 2rem;
+  }
+
+  .article-content :global(p) {
+    margin-bottom: 1.5rem;
+    line-height: 1.7;
+  }
+
+  .article-content :global(a) {
+    color: var(--accent);
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+  }
+
+  .article-content :global(a:hover) {
+    text-decoration-color: transparent;
+  }
+
+  .article-content :global(img) {
+    max-width: 100%;
+    height: auto;
+    border-radius: 6px;
+    margin: 1.5rem 0;
+  }
+
+  .article-content :global(code) {
+    background: var(--surface);
+    padding: 0.2rem 0.4rem;
+    border-radius: 3px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.875rem;
+  }
+
+  .article-content :global(pre) {
+    background: var(--surface);
+    padding: 1rem;
+    border-radius: 6px;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+  }
+
+  .article-content :global(pre code) {
+    background: none;
+    padding: 0;
+  }
+
+  .article-content :global(blockquote) {
+    border-left: 3px solid var(--accent);
+    padding-left: 1rem;
+    margin: 1.5rem 0;
+    color: var(--text-secondary);
+    font-style: italic;
+  }
+
+  .attribution {
+    margin-top: 3rem;
+    padding: 1rem;
+    background: var(--surface);
+    border-radius: 6px;
+    border-left: 3px solid var(--accent-warn);
+  }
+
+  .attribution p {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin: 0;
+  }
+
+  .attribution a {
+    color: var(--accent-warn);
+    text-decoration: underline;
+  }
+
+  .related-posts {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .related-posts h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+  }
+
+  .related-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .related-card {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .related-card:hover {
+    border-color: var(--accent);
+  }
+
+  .related-card h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0.75rem 0;
+    color: var(--text-primary);
+    transition: color 150ms ease;
+  }
+
+  .related-card:hover h4 {
+    color: var(--accent);
+  }
+
+  .related-card .card-image {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+
+  @media (min-width: 1024px) {
+    .article-layout {
+      grid-template-columns: 250px 1fr;
+      gap: 3rem;
+    }
+
+    .toc-container {
+      display: block;
+      position: sticky;
+      top: 2rem;
+      height: fit-content;
+      max-height: calc(100vh - 4rem);
+      overflow-y: auto;
+    }
+
+    .toc-toggle {
+      display: none;
+    }
+
+    .toc-list {
+      display: block;
+    }
+
+    .article-header {
+      grid-column: 2;
+    }
+
+    .article-content {
+      grid-column: 2;
+    }
+
+    .attribution {
+      grid-column: 2;
+    }
+
+    .related-posts {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .toc-container {
+      display: block;
+    }
+
+    .toc-toggle {
+      display: block;
+    }
+
+    .article-header h1 {
+      font-size: 2rem;
+    }
+
+    .hero-image {
+      max-height: 300px;
+    }
+  }
+</style>

@@ -80,3 +80,38 @@ membaca/menulis kode dibanding klik-klik UI visual (ini alasan project pindah da
 WordPress.com ke Astro). Kalau owner minta bantuan lewat AI agent, jelaskan perubahan
 kode secara ringkas dan kaitkan ke konsep SEO yang relevan kalau memungkinkan — owner
 menghargai pemahaman "kenapa", bukan cuma "apa"-nya.
+
+## Progres Implementasi Desain
+
+Desain system telah diimplementasikan berdasarkan `desain-instruksi.md` pada 18 Juli 2026:
+
+### ✅ Selesai
+- **Sistem warna (7 token)**: CSS variables untuk `--bg`, `--surface`, `--text-primary`, `--text-secondary`, `--accent`, `--accent-warn`, `--border`
+- **Tipografi**: Import Google Fonts (Space Grotesk, IBM Plex Sans, IBM Plex Mono) dengan skala tipe sesuai brief
+- **BaseLayout**: Header/footer dengan styling, navigation links, dan global CSS integration
+- **Homepage**: Hero section dengan meta strip signature element, grid artikel terbaru
+- **Halaman blog list**: Grid 3 kolom (desktop) → 1 kolom (mobile), search input, year filter chips
+- **Halaman detail artikel**: 
+  - Breadcrumb navigation
+  - Meta strip signature element (tanggal, reading time, tags, canonical)
+  - TOC (sticky sidebar desktop, collapsible accordion mobile)
+  - Progress bar baca (2px, warna accent)
+  - Artikel terkait (3 card)
+  - Attribution canonical dengan aksen warna
+- **Komponen**: Tombol (radius 4px), tag/badge (warna accent-warn), card (border tipis, no shadow)
+- **Responsif**: Breakpoint desktop (>1024px), tablet (768-1024px), mobile (<768px)
+- **Aksesibilitas**: Focus states, `prefers-reduced-motion` support, kontras warna AA
+
+### 📁 File yang diubah/dibuat
+- `src/styles/global.css` (baru) - CSS variables dan global styles
+- `src/layouts/BaseLayout.astro` - Font imports dan layout styling
+- `src/pages/index.astro` - Homepage redesign dengan meta strip
+- `src/pages/blog/index.astro` - Blog list dengan grid 3 kolom dan filter
+- `src/pages/blog/[slug].astro` - Article detail dengan TOC, progress bar, meta strip
+
+### 🎨 Desain decisions
+- Menggunakan IBM Plex Mono untuk metadata (reading time, tanggal, tags) untuk kesan "developer comment"
+- Warna accent teal (#0F9C8C) melambangkan "data/analitis" sesuai positioning
+- Card hover hanya border color change (150ms), tanpa shadow/scale untuk kesan presisi
+- Lebar konten artikel max 680px untuk optimal reading experience
+- Progress bar hanya 2px tipis di atas halaman, fungsional bukan dekoratif
