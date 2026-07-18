@@ -115,72 +115,92 @@ const positionedIcons = icons.map((icon, index) => ({
     justify-content: center;
     pointer-events: auto;
     cursor: pointer;
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
   }
 
   .icon-wrapper {
     /* Opacity lebih tinggi supaya terlihat jelas */
     opacity: 0.55;
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease, filter 0.5s ease;
     filter: drop-shadow(0 0 10px currentColor);
+    -webkit-filter: drop-shadow(0 0 10px currentColor);
   }
 
   .floating-icon:hover .icon-wrapper {
     opacity: 1;
     transform: scale(1.3) rotate(15deg);
     filter: drop-shadow(0 0 18px currentColor) drop-shadow(0 0 40px currentColor);
+    -webkit-filter: drop-shadow(0 0 18px currentColor) drop-shadow(0 0 40px currentColor);
   }
 
   .float-slow {
-    animation: floatSlow 7s ease-in-out infinite;
+    animation: floatSlow 12s ease-in-out infinite;
+    -webkit-animation: floatSlow 12s ease-in-out infinite;
   }
 
   .float-slower {
-    animation: floatSlower 9s ease-in-out infinite;
+    animation: floatSlower 16s ease-in-out infinite;
+    -webkit-animation: floatSlower 16s ease-in-out infinite;
   }
 
   .float-icon {
-    animation: floatIcon 11s ease-in-out infinite;
+    animation: floatIcon 20s ease-in-out infinite;
+    -webkit-animation: floatIcon 20s ease-in-out infinite;
   }
 
   @keyframes floatSlow {
     0%, 100% {
-      transform: translate(0, 0) rotate(0deg);
-    }
-    25% {
-      transform: translate(18px, -18px) rotate(90deg);
+      transform: translate3d(0, 0, 0) rotate(0deg);
     }
     50% {
-      transform: translate(-12px, 12px) rotate(180deg);
+      transform: translate3d(10px, -15px, 0) rotate(180deg);
     }
-    75% {
-      transform: translate(12px, 18px) rotate(270deg);
+  }
+
+  @-webkit-keyframes floatSlow {
+    0%, 100% {
+      -webkit-transform: translate3d(0, 0, 0) rotate(0deg);
+    }
+    50% {
+      -webkit-transform: translate3d(10px, -15px, 0) rotate(180deg);
     }
   }
 
   @keyframes floatSlower {
     0%, 100% {
-      transform: translate(0, 0) scale(1);
+      transform: translate3d(0, 0, 0) scale(1);
     }
-    33% {
-      transform: translate(-22px, 22px) scale(1.15);
+    50% {
+      transform: translate3d(-15px, 15px, 0) scale(1.1);
     }
-    66% {
-      transform: translate(22px, -22px) scale(0.85);
+  }
+
+  @-webkit-keyframes floatSlower {
+    0%, 100% {
+      -webkit-transform: translate3d(0, 0, 0) scale(1);
+    }
+    50% {
+      -webkit-transform: translate3d(-15px, 15px, 0) scale(1.1);
     }
   }
 
   @keyframes floatIcon {
     0%, 100% {
-      transform: translateY(0) rotate(0deg) scale(1);
+      transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
     }
     50% {
-      transform: translateY(-24px) rotate(180deg) scale(1.25);
+      transform: translate3d(0, -20px, 0) rotate(180deg) scale(1.2);
     }
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    .floating-icon {
-      animation: none;
+  @-webkit-keyframes floatIcon {
+    0%, 100% {
+      -webkit-transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+    }
+    50% {
+      -webkit-transform: translate3d(0, -20px, 0) rotate(180deg) scale(1.2);
     }
   }
 </style>

@@ -4,33 +4,26 @@
 
 @layer base {
   :root {
-    --bg-primary: #f8fafc;
-    --bg-secondary: #f1f5f9;
-    --text-primary: #0f172a;
-    --text-secondary: #64748b;
-    --border-color: #e2e8f0;
-    /* Gradient orbs — soft teal & purple seperti portofolio */
-    --bg-gradient-start: #f8fafc;
-    --bg-gradient-mid: #f0f9ff;
-    --bg-gradient-end: #fdf4ff;
+    --bg-primary: #ffffff;
+    --bg-secondary: #f4f4f5;
+    --text-primary: #09090b;
+    --text-secondary: #71717a;
+    --border-color: #e4e4e7;
     --accent-1: #3b82f6;
-    --accent-2: #8b5cf6;
-    --accent-3: #10b981;
+    --accent-2: #10b981;
+    --accent-3: #8b5cf6;
     --accent-4: #ec4899;
   }
 
   .dark {
-    --bg-primary: #0a0e27;
-    --bg-secondary: #1a1f3a;
-    --text-primary: #f9fafb;
-    --text-secondary: #9ca3af;
-    --border-color: #374151;
-    --bg-gradient-start: #0a0e27;
-    --bg-gradient-mid: #1a1f3a;
-    --bg-gradient-end: #050818;
+    --bg-primary: #09090b;
+    --bg-secondary: #18181b;
+    --text-primary: #fafafa;
+    --text-secondary: #a1a1aa;
+    --border-color: #27272a;
     --accent-1: #3b82f6;
-    --accent-2: #8b5cf6;
-    --accent-3: #10b981;
+    --accent-2: #10b981;
+    --accent-3: #8b5cf6;
     --accent-4: #ec4899;
   }
 
@@ -40,14 +33,16 @@
   }
 
   body {
-    background-color: transparent;
+    background-color: var(--bg-primary);
     color: var(--text-primary);
     transition: background-color 0.3s, color 0.3s;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
   }
 
   html {
     scroll-behavior: smooth;
-    /* Ensure html element is styled with the background color variables to prevent white flash */
     background-color: var(--bg-primary);
   }
 }

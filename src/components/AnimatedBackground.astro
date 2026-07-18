@@ -37,13 +37,13 @@
 <style>
   .animated-background {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     z-index: -1;
     overflow: hidden;
-    background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-mid) 50%, var(--bg-gradient-end) 100%);
+    background: var(--bg-primary);
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+    isolation: isolate;
   }
 
   .animated-background::before {
@@ -68,10 +68,12 @@
     filter: blur(60px);
     -webkit-filter: blur(60px);
     opacity: 0.5;
-    animation: float 20s ease-in-out infinite;
-    will-change: transform;
+    animation: float 24s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+    will-change: transform, opacity;
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
   }
 
   .orb-1 {
@@ -113,10 +115,12 @@
   .svg-pattern {
     position: absolute;
     opacity: 0.3;
-    animation: patternFloat 15s ease-in-out infinite;
-    will-change: transform;
+    animation: patternFloat 18s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+    will-change: transform, opacity;
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
   }
 
   .pattern-1 {
@@ -146,10 +150,12 @@
   .floating-shape {
     position: absolute;
     opacity: 0.2;
-    animation: shapeFloat 12s ease-in-out infinite;
-    will-change: transform;
+    animation: shapeFloat 14s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+    will-change: transform, opacity;
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
   }
 
   .shape-1 {
@@ -184,73 +190,73 @@
 
   @keyframes float {
     0%, 100% {
-      transform: translate(0, 0) scale(1);
+      transform: translate3d(0, 0, 0) scale(1);
     }
     25% {
-      transform: translate(50px, 50px) scale(1.1);
+      transform: translate3d(50px, 50px, 0) scale(1.08);
     }
     50% {
-      transform: translate(0, 100px) scale(1);
+      transform: translate3d(0, 90px, 0) scale(1);
     }
     75% {
-      transform: translate(-50px, 50px) scale(0.9);
+      transform: translate3d(-50px, 50px, 0) scale(0.92);
     }
   }
 
   @-webkit-keyframes float {
     0%, 100% {
-      -webkit-transform: translate(0, 0) scale(1);
+      -webkit-transform: translate3d(0, 0, 0) scale(1);
     }
     25% {
-      -webkit-transform: translate(50px, 50px) scale(1.1);
+      -webkit-transform: translate3d(50px, 50px, 0) scale(1.08);
     }
     50% {
-      -webkit-transform: translate(0, 100px) scale(1);
+      -webkit-transform: translate3d(0, 90px, 0) scale(1);
     }
     75% {
-      -webkit-transform: translate(-50px, 50px) scale(0.9);
+      -webkit-transform: translate3d(-50px, 50px, 0) scale(0.92);
     }
   }
 
   @keyframes patternFloat {
     0%, 100% {
-      transform: translate(0, 0) rotate(0deg);
+      transform: translate3d(0, 0, 0) rotate(0deg);
     }
     33% {
-      transform: translate(30px, -30px) rotate(120deg);
+      transform: translate3d(30px, -30px, 0) rotate(120deg);
     }
     66% {
-      transform: translate(-30px, 30px) rotate(240deg);
+      transform: translate3d(-30px, 30px, 0) rotate(240deg);
     }
   }
 
   @-webkit-keyframes patternFloat {
     0%, 100% {
-      -webkit-transform: translate(0, 0) rotate(0deg);
+      -webkit-transform: translate3d(0, 0, 0) rotate(0deg);
     }
     33% {
-      -webkit-transform: translate(30px, -30px) rotate(120deg);
+      -webkit-transform: translate3d(30px, -30px, 0) rotate(120deg);
     }
     66% {
-      -webkit-transform: translate(-30px, 30px) rotate(240deg);
+      -webkit-transform: translate3d(-30px, 30px, 0) rotate(240deg);
     }
   }
 
   @keyframes shapeFloat {
     0%, 100% {
-      transform: translate(0, 0) rotate(0deg);
+      transform: translate3d(0, 0, 0) rotate(0deg);
     }
     50% {
-      transform: translate(40px, -40px) rotate(180deg);
+      transform: translate3d(40px, -40px, 0) rotate(180deg);
     }
   }
 
   @-webkit-keyframes shapeFloat {
     0%, 100% {
-      -webkit-transform: translate(0, 0) rotate(0deg);
+      -webkit-transform: translate3d(0, 0, 0) rotate(0deg);
     }
     50% {
-      -webkit-transform: translate(40px, -40px) rotate(180deg);
+      -webkit-transform: translate3d(40px, -40px, 0) rotate(180deg);
     }
   }
 

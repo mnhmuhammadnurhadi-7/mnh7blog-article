@@ -91,16 +91,19 @@ function calculateReadingTime(content: string) {
 
 <style>
   .hero {
-    min-height: 80vh;
+    min-height: calc(100vh - 4rem);
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    padding: 2rem;
+    padding: 4rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
   }
 
   .hero-content {
     max-width: 800px;
     text-align: left;
+    padding: 0 1.5rem;
     animation: heroEnter 0.9s cubic-bezier(0.4, 0, 0.2, 1) both;
     animation-delay: 0.2s;
   }
