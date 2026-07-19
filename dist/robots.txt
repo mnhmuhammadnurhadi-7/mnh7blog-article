@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://mnh7blog-article.vercel.app/sitemap-index.xml
+Sitemap: https://mnhblog.vercel.app/sitemap-index.xml
