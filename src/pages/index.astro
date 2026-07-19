@@ -60,7 +60,7 @@ function calculateReadingTime(content: string) {
     
     <div class="posts-grid">
       {posts.map((post) => (
-        <a class="post-card glass-dark" href={`/blog/${post.slug}/`}>
+        <a class="post-card glass-dark" href={`/blog/${post.id}/`}>
           {post.data.heroImage && (
             <img 
               src={post.data.heroImage} 
@@ -280,13 +280,7 @@ function calculateReadingTime(content: string) {
   }
 
   .latest-posts {
-    padding: 4rem 1.5rem; /* px-6 */
-  }
-
-  @media (min-width: 768px) {
-    .latest-posts {
-      padding: 4rem 2.5rem; /* md:px-10 */
-    }
+    padding: 4rem 0;
   }
 
   .section-header {
@@ -294,6 +288,13 @@ function calculateReadingTime(content: string) {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 2rem;
+    padding: 0 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .section-header {
+      padding: 0 2.5rem;
+    }
   }
 
   .section-title {
@@ -337,51 +338,31 @@ function calculateReadingTime(content: string) {
 
   .posts-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
+    padding: 0 1.5rem 4rem;
   }
 
-    .post-card {
+  @media (min-width: 768px) {
+    .posts-grid {
+      padding: 0 2.5rem 4rem;
+    }
+  }
+
+  .post-card {
     display: flex;
     flex-direction: column;
     text-decoration: none;
     padding: 1.5rem;
     border-radius: 1rem;
-    transition: all 0.45s cubic-bezier(0.4, 0, 0.2, 1);
-    border: 1px solid rgba(255, 255, 255, 0.07);
-    position: relative;
-    overflow: hidden;
-    animation: cardReveal 0.7s cubic-bezier(0.4, 0, 0.2, 1) both;
-  }
-
-  .post-card::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    background: linear-gradient(135deg, rgba(59,130,246,0.06), rgba(139,92,246,0.06));
-    opacity: 0;
-    transition: opacity 0.45s ease;
-    pointer-events: none;
-  }
-
-  .post-card:hover::after {
-    opacity: 1;
-  }
-
-  .post-card:nth-child(1) { animation-delay: 0.1s; }
-  .post-card:nth-child(2) { animation-delay: 0.2s; }
-  .post-card:nth-child(3) { animation-delay: 0.3s; }
-
-  @keyframes cardReveal {
-    from { opacity: 0; transform: translateY(30px); }
-    to   { opacity: 1; transform: translateY(0); }
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.06);
   }
 
   .post-card:hover {
-    transform: translateY(-8px);
-    border-color: rgba(139, 92, 246, 0.55);
-    box-shadow: 0 16px 40px rgba(139, 92, 246, 0.25), 0 0 0 1px rgba(139,92,246,0.1);
+    transform: translateY(-5px);
+    border-color: rgba(139, 92, 246, 0.28);
+    box-shadow: 0 10px 30px rgba(139, 92, 246, 0.14);
   }
 
   .card-image {
@@ -392,30 +373,30 @@ function calculateReadingTime(content: string) {
     margin-bottom: 1rem;
   }
 
-    .post-title {
+  .post-title {
     font-family: 'Sora', sans-serif;
     font-size: 1.25rem;
     font-weight: 600;
-    color: var(--text-primary);
     margin: 0.75rem 0;
+    color: #f9fafb;
     transition: color 0.3s ease;
+    line-height: 1.4;
   }
 
   .post-card:hover .post-title {
     color: #8b5cf6;
-    text-shadow: 0 0 16px rgba(139, 92, 246, 0.5);
   }
 
-    .post-meta {
+  .post-meta {
     display: flex;
     gap: 0.5rem;
     font-size: 0.875rem;
-    color: var(--text-secondary);
+    color: #9ca3af;
     margin-bottom: 0.75rem;
   }
 
   .post-excerpt {
-    color: var(--text-secondary);
+    color: #9ca3af;
     font-size: 0.9375rem;
     line-height: 1.6;
     margin-bottom: 1rem;
@@ -434,22 +415,18 @@ function calculateReadingTime(content: string) {
 
   .post-tag {
     padding: 0.25rem 0.75rem;
-    background: rgba(59, 130, 246, 0.15);
-    border: 1px solid rgba(59, 130, 246, 0.25);
+    background: rgba(59, 130, 246, 0.2);
+    border: 1px solid rgba(59, 130, 246, 0.3);
     border-radius: 9999px;
     font-size: 0.75rem;
     color: #60a5fa;
-    transition: all 0.3s ease;
   }
 
-  .post-tag:hover {
-    background: rgba(59, 130, 246, 0.3);
-    box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
-  }
 
-  @keyframes tagFloat {
-    0%, 100% { transform: translateY(0); }
-    50%       { transform: translateY(-6px); }
+  @media (max-width: 1024px) {
+    .posts-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 
   @media (max-width: 768px) {

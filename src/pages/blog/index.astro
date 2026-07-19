@@ -52,7 +52,7 @@ function calculateReadingTime(content: string) {
     {posts.map((post) => (
       <a
         class="post-card glass-dark"
-        href={`/blog/${post.slug}/`}
+        href={`/blog/${post.id}/`}
         data-title={post.data.title.toLowerCase()}
         data-year={post.data.pubDate.getFullYear()}
       >
