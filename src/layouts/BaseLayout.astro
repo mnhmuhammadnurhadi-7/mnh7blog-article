@@ -57,10 +57,11 @@ const jsonLd = isArticle
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <link rel="manifest" href="/site.webmanifest" />
   
-  <!-- Fonts: Inter, Sora (from portfolio design) -->
+  <!-- Fonts: Inter, Sora (from portfolio design) - preconnect for performance -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700&display=swap" rel="stylesheet"></noscript>
   
   <!-- Global CSS (imported in frontmatter) -->
 
@@ -150,14 +151,24 @@ const jsonLd = isArticle
 
   <script>
     // ── Active nav link ───────────────────────────
+    // Batch DOM reads first, then writes to avoid forced reflow
     const path = window.location.pathname;
-    document.querySelectorAll('.nav-link-item[data-page]').forEach((link) => {
+    const navLinks = document.querySelectorAll('.nav-link-item[data-page]');
+    const activeLinks = [];
+
+    // Read phase: collect all data
+    navLinks.forEach((link) => {
       const page = link.getAttribute('data-page');
       const isActive =
         (page === 'home'  && (path === '/' || path === '')) ||
         (page === 'blog'  && path.startsWith('/blog')) ||
         (page === 'about' && path.startsWith('/about'));
-      if (isActive) link.classList.add('active');
+      if (isActive) activeLinks.push(link);
+    });
+
+    // Write phase: apply all changes at once
+    requestAnimationFrame(() => {
+      activeLinks.forEach((link) => link.classList.add('active'));
     });
 
     // ── Theme toggle ──────────────────────────────
@@ -166,6 +177,7 @@ const jsonLd = isArticle
 
     const savedTheme = localStorage.getItem('theme') || 'light';
     const applyTheme = (theme) => {
+      // Batch DOM writes to avoid forced reflow
       if (theme === 'dark') {
         html.classList.add('dark');
         html.dataset.theme = 'dark';
@@ -177,15 +189,19 @@ const jsonLd = isArticle
       }
     };
 
+    // Apply theme before any DOM reads to prevent layout thrashing
     applyTheme(savedTheme);
 
     document.addEventListener('click', (e) => {
       const el = e.target instanceof Element ? e.target.closest('#theme-toggle') : null;
       if (el) {
-        const isDark = html.classList.toggle('dark');
-        const newTheme = isDark ? 'dark' : 'light';
-        localStorage.setItem('theme', newTheme);
-        applyTheme(newTheme);
+        // Use requestAnimationFrame to batch DOM operations
+        requestAnimationFrame(() => {
+          const isDark = html.classList.toggle('dark');
+          const newTheme = isDark ? 'dark' : 'light';
+          localStorage.setItem('theme', newTheme);
+          applyTheme(newTheme);
+        });
       }
     });
   </script>
@@ -374,6 +390,7 @@ const jsonLd = isArticle
     .footer-copy {
       font-size: 0.875rem; /* text-sm */
       margin: 0 0 0.5rem;
+      color: var(--text-secondary);
     }
 
     .footer-sub {
