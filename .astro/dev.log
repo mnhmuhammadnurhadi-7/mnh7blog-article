@@ -138,3 +138,30 @@
 {"message":"[200] /blog/sdg-4-pendidikan-berkualitas-era-ai/ 6ms","label":null,"level":"info"}
 {"message":"[200] / 14ms","label":null,"level":"info"}
 {"message":"src/layouts/BaseLayout.astro","label":"watch","level":"info"}
+{"message":"/src/pages/index.astro?astro&type=style&index=0&lang.css, /src/styles/global.css","label":"watch","level":"info"}
+{"message":"[200] / 74ms","label":null,"level":"info"}
+{"message":"/src/pages/index.astro?astro&type=style&index=0&lang.css, /src/styles/global.css","label":"watch","level":"info"}
+{"message":"[200] / 15ms","label":null,"level":"info"}
+{"message":"/src/pages/index.astro?astro&type=style&index=0&lang.css","label":"watch","level":"info"}
+{"message":"Failed to reload sesak-nafas-jantung-berdebar-penyakit-jantung-langka.md: **blog → sesak-nafas-jantung-berdebar-penyakit-jantung-langka** data does not match collection schema.\n\n  **canonicalUrl**: Invalid URL\n","label":"glob-loader","level":"error"}
+{"message":"Failed to reload sesak-nafas-jantung-berdebar-penyakit-jantung-langka.md: **blog → sesak-nafas-jantung-berdebar-penyakit-jantung-langka** data does not match collection schema.\n\n  **canonicalUrl**: Invalid URL\n","label":"glob-loader","level":"error"}
+{"message":"Failed to reload sesak-nafas-jantung-berdebar-penyakit-jantung-langka.md: **blog → sesak-nafas-jantung-berdebar-penyakit-jantung-langka** data does not match collection schema.\n\n  **canonicalUrl**: Invalid URL\n","label":"glob-loader","level":"error"}
+{"message":"[200] / 21ms","label":null,"level":"info"}
+{"message":"[200] /blog 24ms","label":null,"level":"info"}
+{"message":"/src/styles/global.css","label":"watch","level":"info"}
+{"message":"Failed to reload sesak-nafas-jantung-berdebar-penyakit-jantung-langka.md: **blog → sesak-nafas-jantung-berdebar-penyakit-jantung-langka** data does not match collection schema.\n\n  **canonicalUrl**: Invalid URL\n","label":"glob-loader","level":"error"}
+{"message":"/src/styles/global.css","label":"watch","level":"info"}
+{"message":"/src/styles/global.css","label":"watch","level":"info"}
+{"message":"Reloaded data from sesak-nafas-jantung-berdebar-penyakit-jantung-langka.md","label":"glob-loader","level":"info"}
+{"message":"/src/styles/global.css","label":"watch","level":"info"}
+{"message":"[200] /blog 54ms","label":null,"level":"info"}
+{"message":"/src/styles/global.css","label":"watch","level":"info"}
+{"message":"/src/styles/global.css","label":"watch","level":"info"}
+{"message":"/src/styles/global.css","label":"watch","level":"info"}
+{"message":"[200] /blog/sesak-nafas-jantung-berdebar-penyakit-jantung-langka/ 21ms","label":null,"level":"info"}
+{"message":"src/pages/blog/[slug].astro","label":"watch","level":"info"}
+{"message":"[200] /blog/sesak-nafas-jantung-berdebar-penyakit-jantung-langka/ 22ms","label":null,"level":"info"}
+{"message":"[200] /blog/sesak-nafas-jantung-berdebar-penyakit-jantung-langka/ 5ms","label":null,"level":"info"}
+{"message":"[200] /blog/sesak-nafas-jantung-berdebar-penyakit-jantung-langka/ 5ms","label":null,"level":"info"}
+{"message":"src/pages/blog/[slug].astro","label":"watch","level":"info"}
+{"message":"[200] /blog/sesak-nafas-jantung-berdebar-penyakit-jantung-langka/ 25ms","label":null,"level":"info"}

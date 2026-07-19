@@ -16,7 +16,7 @@ const allPosts = (await getCollection('blog')).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 
-// Artikel terkait (3 artikel selain yang sedang dibaca)
+// Artikel Lainnya (3 artikel selain yang sedang dibaca)
 const relatedPosts = allPosts
   .filter((p) => p.id !== post.id)
   .slice(0, 3);
@@ -138,7 +138,7 @@ const tocItems = Array.from(headings).map((match) => ({
     <!-- Related articles -->
     {relatedPosts.length > 0 && (
       <section class="related-posts">
-        <h3 class="related-title">Artikel Terkait</h3>
+        <h3 class="related-title">Artikel Lainnya</h3>
         <div class="related-grid">
           {relatedPosts.map((relatedPost) => (
             <a class="related-card glass-dark" href={`/blog/${relatedPost.id}/`}>
