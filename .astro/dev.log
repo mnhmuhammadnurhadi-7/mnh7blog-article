@@ -165,3 +165,8 @@
 {"message":"[200] /blog/sesak-nafas-jantung-berdebar-penyakit-jantung-langka/ 5ms","label":null,"level":"info"}
 {"message":"src/pages/blog/[slug].astro","label":"watch","level":"info"}
 {"message":"[200] /blog/sesak-nafas-jantung-berdebar-penyakit-jantung-langka/ 25ms","label":null,"level":"info"}
+{"message":"[200] / 8ms","label":null,"level":"info"}
+{"message":"/src/styles/global.css","label":"watch","level":"info"}
+{"message":"Reloaded data from sesak-nafas-jantung-berdebar-penyakit-jantung-langka.md","label":"glob-loader","level":"info"}
+{"message":"/src/styles/global.css","label":"watch","level":"info"}
+{"message":"[200] / 14ms","label":null,"level":"info"}

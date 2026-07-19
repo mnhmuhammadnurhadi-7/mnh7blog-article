@@ -4,7 +4,7 @@ description: "Sesak nafas dan jantung berdebar bisa jadi gejala biasa, tapi juga
 pubDate: "2026-07-19"
 heroImage: "/images/cover-heart.png"
 slug: "sesak-nafas-jantung-berdebar-penyakit-jantung-langka"
-
+tags: ["Kesehatan Jantung", "Penyakit Jantung Bawaan", "MAPCAs"]
 ---
 
 ## Sesak Nafas dan Jantung Berdebar Tidak Teratur, Apa Hubungannya?
