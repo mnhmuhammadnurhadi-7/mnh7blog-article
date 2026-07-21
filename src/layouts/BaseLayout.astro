@@ -64,14 +64,74 @@ const jsonLd = isArticle
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <link rel="manifest" href="/site.webmanifest" />
   
-  <!-- Self-hosted fonts with preload for critical weights -->
+  <!-- Sora (LCP font — HIGHEST priority, preloaded before Inter) -->
+  <link rel="preload" href="/fonts/sora-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/sora-600.woff2" as="font" type="font/woff2" crossorigin>
+  <!-- Inter (body font) -->
   <link rel="preload" href="/fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/fonts/inter-600.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/fonts.css">
+
+  <!-- fonts.css: loaded non-blocking (same pattern as animations.css) -->
+  <!-- @font-face for Sora is inlined below for article pages to avoid any blocking -->
+  <link rel="stylesheet" href="/fonts.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="/fonts.css"></noscript>
 
   <!-- Non-critical CSS (animations) - loaded after initial paint -->
   <link rel="stylesheet" href="/animations.css" media="print" onload="this.media='all'">
   <noscript><link rel="stylesheet" href="/animations.css"></noscript>
+
+  <!-- CRITICAL INLINE CSS for article pages -->
+  <!-- Inlined to let H1.article-title render immediately, without waiting for any external CSS -->
+  {isArticle && (
+    <style>
+      /* Inline @font-face for Sora — browser knows the font immediately,
+         even before fonts.css (now non-blocking) is downloaded */
+      @font-face {
+        font-family: 'Sora';
+        font-style: normal;
+        font-weight: 600;
+        font-display: swap;
+        src: url('/fonts/sora-600.woff2') format('woff2');
+        size-adjust: 98%;
+        ascent-override: 90%;
+        descent-override: 22%;
+        line-gap-override: 0%;
+      }
+      @font-face {
+        font-family: 'Sora';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url('/fonts/sora-700.woff2') format('woff2');
+        size-adjust: 98%;
+        ascent-override: 90%;
+        descent-override: 22%;
+        line-gap-override: 0%;
+      }
+      /* Critical CSS: LCP element (.article-title) */
+      /* All properties needed for immediate first paint of H1 */
+      .article-title {
+        font-family: 'Sora', system-ui, sans-serif;
+        font-size: 2.5rem;
+        font-weight: 700;
+        line-height: 1.15;
+        margin: 0 0 1rem 0;
+        background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      html:not(.dark) .article-title {
+        background: linear-gradient(135deg, #1d4ed8, #7c3aed);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      @media (max-width: 768px) {
+        .article-title { font-size: 2rem; }
+      }
+    </style>
+  )}
 
   <!-- Preload LCP image for article pages -->
   {isArticle && preloadSrcset && preloadSizes && (

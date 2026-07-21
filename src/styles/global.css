@@ -146,7 +146,10 @@
 }
 
 /* Headings with gradient accents */
-.hero-title, .article-title, .section-title, .related-title {
+/* Note: .article-title is intentionally excluded here — it is defined
+   via inline critical CSS in BaseLayout.astro (for immediate LCP paint)
+   and in [slug].astro <style> with the correct blue→purple gradient. */
+.hero-title, .section-title, .related-title {
   background: linear-gradient(135deg, #3b82f6, #10b981);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
