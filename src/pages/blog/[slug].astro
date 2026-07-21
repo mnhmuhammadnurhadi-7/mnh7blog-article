@@ -1,7 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection, render } from 'astro:content';
-import { Image } from 'astro:assets';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
@@ -110,13 +109,13 @@ const tocItems = Array.from(headings).map((match) => ({
       )}
 
       {post.data.heroImage && (
-        <Image 
+        <img 
           src={post.data.heroImage} 
           alt={post.data.title} 
           loading="eager"
           fetchpriority="high"
-          width={1200}
-          height={630}
+          width="1200"
+          height="630"
           class="hero-image"
         />
       )}
@@ -148,13 +147,14 @@ const tocItems = Array.from(headings).map((match) => ({
           {relatedPosts.map((relatedPost) => (
             <a class="related-card glass-dark" href={`/blog/${relatedPost.id}/`}>
               {relatedPost.data.heroImage && (
-                <Image 
+                <img 
                   src={relatedPost.data.heroImage} 
                   alt={relatedPost.data.title}
                   loading="lazy"
-                  width={600}
-                  height={300}
+                  width="600"
+                  height="300"
                   class="card-image"
+                  style="display: block;"
                 />
               )}
               <h4 class="related-card-title">{relatedPost.data.title}</h4>
@@ -377,6 +377,7 @@ const tocItems = Array.from(headings).map((match) => ({
     object-fit: cover;
     border-radius: 1rem;
     margin-top: 1.5rem;
+    display: block;
   }
 
 

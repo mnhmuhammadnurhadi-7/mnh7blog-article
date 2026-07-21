@@ -2,7 +2,7 @@
 title: "Sejarah Ospek di Indonesia hingga Perjalanan OSPEK UB dari Masa ke Masa"
 description: "Sejarah ospek di Indonesia hingga perjalanan OSPEK UB dari masa ke masa, dari era perpeloncoan sampai berubah nama jadi PK2MABA."
 pubDate: "2026-07-20"
-heroImage: "/images/cover-ospek5.png"
+heroImage: "/images/cover-ospek5.webp"
 slug: "sejarah-ospek-indonesia-ospek-ub"
 tags: ["Sejarah Kampus", "Universitas Brawijaya", "PK2MABA"]
 ---

@@ -2,7 +2,7 @@
 title: "SDG 4 Pendidikan Berkualitas di Era AI: Peluang, Tantangan, dan Strategi bagi Indonesia"
 description: "Analisis SDG 4 pendidikan berkualitas di era AI: peluang personalisasi belajar, risiko kesenjangan digital, dan langkah kebijakan yang perlu diambil Indonesia."
 pubDate: 2026-07-19
-heroImage: "/images/sdgs-4-cover.jpg"
+heroImage: "/images/sdgs-4-cover.webp"
 tags: ["SDGs", "Pendidikan", "Kecerdasan Buatan", "Kebijakan Publik", "Teknologi Pendidikan"]
 ---
 

@@ -2,7 +2,7 @@
 title: "Sesak Nafas dan Jantung Berdebar Tidak Teratur: Penyebab Umum hingga Penyakit Jantung Langka yang Perlu Diwaspadai"
 description: "Sesak nafas dan jantung berdebar bisa jadi gejala biasa, tapi juga tanda penyakit jantung langka seperti MAPCAs dan severe PH. Kenali bedanya."
 pubDate: "2026-07-19"
-heroImage: "/images/cover-heart.png"
+heroImage: "/images/cover-heart.webp"
 slug: "sesak-nafas-jantung-berdebar-penyakit-jantung-langka"
 tags: ["Kesehatan Jantung", "Penyakit Jantung Bawaan", "MAPCAs"]
 ---

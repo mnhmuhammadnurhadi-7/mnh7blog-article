@@ -411,45 +411,7 @@ html:not(.dark) .shape-triangle-3 {
 
 /* Mobile-specific fixes to prevent bubble overlap issues */
 @media (max-width: 768px) {
-  .bubble {
-    filter: blur(40px);
-  }
-
-  .bubble-1 {
-    width: 200px;
-    height: 200px;
-  }
-
-  .bubble-2 {
-    width: 180px;
-    height: 180px;
-  }
-
-  .bubble-3 {
-    width: 150px;
-    height: 150px;
-  }
-
-  .bubble-4 {
-    width: 140px;
-    height: 140px;
-  }
-
-  .bubble-5 {
-    width: 160px;
-    height: 160px;
-  }
-
-  .bubble-6 {
-    width: 130px;
-    height: 130px;
-  }
-
-  .shape {
-    opacity: 0.04;
-  }
-
-  html:not(.dark) .shape {
-    opacity: 0.08;
+  .animated-background {
+    display: none;
   }
 }

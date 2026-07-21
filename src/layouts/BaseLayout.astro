@@ -24,7 +24,7 @@ const {
 } = Astro.props;
 
 const canonical = canonicalUrl ?? new URL(Astro.url.pathname, Astro.site).toString();
-const ogImage = new URL(image, Astro.site).toString();
+const ogImage = new URL(image, Astro.site).toString() + '?v=2';
 const siteName = 'Muhammad Nur Hadi';
 
 // JSON-LD structured data - bikin Google lebih ngerti konten kamu
@@ -67,11 +67,10 @@ const jsonLd = isArticle
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <link rel="manifest" href="/site.webmanifest" />
   
-  <!-- Fonts: Inter, Sora - preconnect for performance, font-display: swap for CLS -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700&display=swap" rel="stylesheet"></noscript>
+  <!-- Self-hosted fonts with preload for critical weights -->
+  <link rel="preload" href="/fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/inter-600.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/fonts.css">
 
   <!-- Non-critical CSS (animations) - loaded after initial paint -->
   <link rel="stylesheet" href="/animations.css" media="print" onload="this.media='all'">
@@ -91,7 +90,7 @@ const jsonLd = isArticle
   <meta property="og:image" content={ogImage} />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:type" content="image/jpeg" />
   <meta property="og:site_name" content={siteName} />
 
   <!-- Twitter / X -->
