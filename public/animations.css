@@ -5,11 +5,7 @@
   z-index: -1;
   overflow: hidden;
   pointer-events: none;
-  background-color: #09090b;
-}
-
-html:not(.dark) .animated-background {
-  background-color: #ffffff;
+  background-color: var(--bg-primary);
 }
 
 .dot-grid {

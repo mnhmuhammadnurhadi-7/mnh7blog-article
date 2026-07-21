@@ -122,11 +122,20 @@
   background: rgba(255,255,255,0.02);
 }
 
+:global(html.dark) .chip, :global(html.dark) .search-input, :global(html.dark) .toc-toggle, :global(html.dark) .post-card, :global(html.dark) .related-card {
+  background: rgba(0,0,0,0.2);
+}
+
 /* Code / pre / blockquote */
 code, pre, blockquote {
   color: var(--text-secondary);
   background: rgba(255,255,255,0.02);
   border-color: rgba(139,92,246,0.06);
+}
+
+:global(html.dark) code, :global(html.dark) pre, :global(html.dark) blockquote {
+  background: rgba(0,0,0,0.2);
+  border-color: rgba(139,92,246,0.2);
 }
 
 /* Progress bar accent */

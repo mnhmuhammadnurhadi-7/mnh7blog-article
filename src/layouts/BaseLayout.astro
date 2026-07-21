@@ -237,10 +237,10 @@ const jsonLd = isArticle
       left: 0;
       right: 0;
       z-index: 50;
-      background: rgba(9, 9, 11, 0.8); /* bg-zinc-950/80 */
+      background: rgba(9, 9, 11, 0.8);
       backdrop-filter: blur(24px);
       -webkit-backdrop-filter: blur(24px);
-      border-bottom: 1px solid #27272a; /* border-zinc-800 */
+      border-bottom: 1px solid var(--border-color);
       height: 4rem; /* h-16 */
       padding: 0 1.5rem; /* px-6 */
       display: flex;
@@ -258,7 +258,6 @@ const jsonLd = isArticle
 
     :global(html:not(.dark)) .site-header {
       background: rgba(255, 255, 255, 0.8);
-      border-bottom: 1px solid #e4e4e7; /* border-zinc-200 */
     }
 
     @keyframes slideDown {
@@ -339,26 +338,20 @@ const jsonLd = isArticle
 
     /* Toggle theme button - matches Layout.tsx: p-2 rounded-full bg-secondary border border-color hover:scale-110 */
     .theme-toggle {
-      background: #18181b; /* dark bgSecondary = bg-zinc-900 */
+      background: var(--bg-secondary);
       border-radius: 9999px;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
       transition: transform 0.2s ease, background 0.3s ease;
-      color: #fafafa;
-      border: 1px solid #27272a; /* border-zinc-800 */
+      color: var(--text-primary);
+      border: 1px solid var(--border-color);
       padding: 0.5rem;
       width: 36px;
       height: 36px;
       position: relative;
       overflow: hidden;
-    }
-
-    :global(html:not(.dark)) .theme-toggle {
-      background: #f4f4f5; /* light bgSecondary = bg-zinc-100 */
-      color: #09090b;
-      border-color: #e4e4e7;
     }
 
     .theme-toggle:hover {
@@ -390,17 +383,11 @@ const jsonLd = isArticle
     .site-footer {
       position: relative;
       z-index: 10;
-      background-color: #18181b; /* bg-zinc-900 = dark bgSecondary */
-      border-top: 1px solid #27272a; /* border-zinc-800 */
-      color: #a1a1aa; /* text-zinc-400 = dark textSecondary */
+      background-color: var(--bg-secondary);
+      border-top: 1px solid var(--border-color);
+      color: var(--text-secondary);
       text-align: center;
       padding: 3rem 1.5rem; /* py-12 px-6 */
-    }
-
-    :global(html:not(.dark)) .site-footer {
-      background-color: #f4f4f5; /* bg-zinc-100 = light bgSecondary */
-      border-top: 1px solid #e4e4e7; /* border-zinc-200 */
-      color: #71717a; /* text-zinc-500 = light textSecondary */
     }
 
     .footer-copy {
