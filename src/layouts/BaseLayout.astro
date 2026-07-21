@@ -237,7 +237,7 @@ const jsonLd = isArticle
       left: 0;
       right: 0;
       z-index: 50;
-      background: rgba(9, 9, 11, 0.8);
+      background: var(--bg-header);
       backdrop-filter: blur(24px);
       -webkit-backdrop-filter: blur(24px);
       border-bottom: 1px solid var(--border-color);
@@ -256,10 +256,6 @@ const jsonLd = isArticle
       }
     }
 
-    :global(html:not(.dark)) .site-header {
-      background: rgba(255, 255, 255, 0.8);
-    }
-
     @keyframes slideDown {
       from { transform: translateY(-20px); opacity: 0; }
       to   { transform: translateY(0); opacity: 1; }
@@ -270,12 +266,8 @@ const jsonLd = isArticle
       font-weight: 800; /* font-extrabold */
       font-size: 1.125rem; /* text-lg */
       letter-spacing: -0.025em; /* tracking-tight */
-      color: #ffffff; /* text-white */
+      color: var(--text-primary);
       transition: opacity 0.3s ease;
-    }
-
-    :global(html:not(.dark)) .logo-text {
-      color: #09090b; /* text-zinc-950 */
     }
 
     .nav-links-list {
@@ -294,7 +286,7 @@ const jsonLd = isArticle
     }
 
     .nav-link-item {
-      color: #a1a1aa; /* text-zinc-400 */
+      color: var(--text-secondary);
       text-decoration: none;
       font-size: 0.875rem; /* text-sm */
       font-weight: 500; /* font-medium */
@@ -304,16 +296,7 @@ const jsonLd = isArticle
 
     .nav-link-item:hover,
     .nav-link-item.active {
-      color: #ffffff; /* hover:text-white */
-    }
-
-    :global(html:not(.dark)) .nav-link-item {
-      color: #71717a; /* text-zinc-500 */
-    }
-
-    :global(html:not(.dark)) .nav-link-item:hover,
-    :global(html:not(.dark)) .nav-link-item.active {
-      color: #09090b; /* hover:text-zinc-950 */
+      color: var(--text-primary);
     }
 
     /* Line Indicator - matches Layout.tsx: bg-gradient-to-r from-blue-500 to-emerald-500 */
@@ -323,12 +306,8 @@ const jsonLd = isArticle
       bottom: 0;
       width: 0;
       height: 0.5px;
-      background: linear-gradient(to right, #3b82f6, #10b981);
+      background: linear-gradient(to right, var(--accent-1), var(--accent-2));
       transition: width 0.3s ease;
-    }
-
-    :global(html:not(.dark)) .nav-underline {
-      background: linear-gradient(to right, #3b82f6, #10b981);
     }
 
     .nav-link-item:hover .nav-underline,
@@ -398,12 +377,8 @@ const jsonLd = isArticle
 
     .footer-sub {
       font-size: 0.75rem; /* text-xs */
-      color: #52525b; /* text-zinc-600 */
+      color: var(--text-secondary);
       margin: 0;
-    }
-
-    :global(html:not(.dark)) .footer-sub {
-      color: #a1a1aa; /* text-zinc-400 */
     }
 
     /* ─── RESPONSIVE ─────────────────────────────── */

@@ -4,11 +4,41 @@
 
 @layer base {
   :root {
+    /* Main backgrounds */
     --bg-primary: #ffffff;
     --bg-secondary: #f4f4f5;
+    --bg-glass: rgba(255, 255, 255, 0.8);
+    --bg-card: rgba(255, 255, 255, 0.85);
+    --bg-code: rgba(243, 244, 246, 0.8);
+    --bg-code-block: rgba(243, 244, 246, 0.9);
+    --bg-blockquote: rgba(243, 244, 246, 0.5);
+    --bg-table-header: #f4f4f5;
+    --bg-table-row-even: rgba(243, 244, 246, 0.3);
+    --bg-input: rgba(255, 255, 255, 0.02);
+    --bg-chip: rgba(255, 255, 255, 0.02);
+    --bg-header: rgba(255, 255, 255, 0.8);
+    
+    /* Text colors */
     --text-primary: #09090b;
     --text-secondary: #52525b;
+    --text-muted: #6b7280;
+    --text-muted-dark: #9ca3af;
+    --text-link: #7c3aed;
+    --text-link-hover: #8b5cf6;
+    --text-code: #dc2626;
+    --text-code-dark: #60a5fa;
+    --text-canonical: #f97316;
+    
+    /* Borders */
     --border-color: #e4e4e7;
+    --border-subtle: rgba(255, 255, 255, 0.06);
+    --border-purple: rgba(139, 92, 246, 0.22);
+    --border-purple-hover: rgba(139, 92, 246, 0.28);
+    --border-purple-strong: rgba(139, 92, 246, 0.35);
+    --border-code: rgba(0, 0, 0, 0.1);
+    --border-table: #e4e4e7;
+    
+    /* Accents */
     --accent-1: #3b82f6;
     --accent-2: #10b981;
     --accent-3: #8b5cf6;
@@ -16,11 +46,41 @@
   }
 
   .dark {
+    /* Main backgrounds */
     --bg-primary: #09090b;
     --bg-secondary: #18181b;
+    --bg-glass: rgba(10, 14, 39, 0.5);
+    --bg-card: rgba(26, 31, 58, 0.5);
+    --bg-code: rgba(26, 31, 58, 0.5);
+    --bg-code-block: rgba(26, 31, 58, 0.5);
+    --bg-blockquote: rgba(139, 92, 246, 0.1);
+    --bg-table-header: #18181b;
+    --bg-table-row-even: rgba(26, 31, 58, 0.3);
+    --bg-input: rgba(0, 0, 0, 0.2);
+    --bg-chip: rgba(0, 0, 0, 0.2);
+    --bg-header: rgba(9, 9, 11, 0.8);
+    
+    /* Text colors */
     --text-primary: #fafafa;
     --text-secondary: #d4d4d8;
+    --text-muted: #9ca3af;
+    --text-muted-dark: #9ca3af;
+    --text-link: #8b5cf6;
+    --text-link-hover: #8b5cf6;
+    --text-code: #60a5fa;
+    --text-code-dark: #60a5fa;
+    --text-canonical: #f97316;
+    
+    /* Borders */
     --border-color: #27272a;
+    --border-subtle: rgba(255, 255, 255, 0.06);
+    --border-purple: rgba(139, 92, 246, 0.22);
+    --border-purple-hover: rgba(139, 92, 246, 0.28);
+    --border-purple-strong: rgba(139, 92, 246, 0.35);
+    --border-code: rgba(255, 255, 255, 0.1);
+    --border-table: #27272a;
+    
+    /* Accents */
     --accent-1: #3b82f6;
     --accent-2: #10b981;
     --accent-3: #8b5cf6;
@@ -34,7 +94,8 @@
 
   body {
     color: var(--text-primary);
-    transition: color 0.3s;
+    background-color: var(--bg-primary);
+    transition: color 0.3s, background-color 0.3s;
     margin: 0;
     padding: 0;
     min-height: 100vh;
@@ -117,25 +178,33 @@
 .btn-primary {
   color: var(--text-primary);
 }
-.chip, .search-input, .toc-toggle, .post-card, .related-card {
+.chip, .search-input, .toc-toggle, .related-card {
   border-color: var(--border-color);
-  background: rgba(255,255,255,0.02);
+  background: var(--bg-chip);
 }
 
-:global(html.dark) .chip, :global(html.dark) .search-input, :global(html.dark) .toc-toggle, :global(html.dark) .post-card, :global(html.dark) .related-card {
-  background: rgba(0,0,0,0.2);
+/* post-card with glass-dark should use glass-dark background, not override it */
+.post-card.glass-dark {
+  background: var(--bg-glass);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-subtle);
+}
+
+/* article-content and attribution with glass-dark should use glass-dark background */
+.article-content.glass-dark,
+.attribution.glass-dark,
+.related-card.glass-dark,
+.search-input.glass-dark {
+  background: var(--bg-glass);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-subtle);
 }
 
 /* Code / pre / blockquote */
 code, pre, blockquote {
   color: var(--text-secondary);
-  background: rgba(255,255,255,0.02);
-  border-color: rgba(139,92,246,0.06);
-}
-
-:global(html.dark) code, :global(html.dark) pre, :global(html.dark) blockquote {
-  background: rgba(0,0,0,0.2);
-  border-color: rgba(139,92,246,0.2);
+  background: var(--bg-code);
+  border-color: var(--border-purple);
 }
 
 /* Progress bar accent */
