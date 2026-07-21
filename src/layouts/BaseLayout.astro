@@ -12,6 +12,8 @@ export interface Props {
   updatedDate?: Date;
   isArticle?: boolean;
   preloadImage?: string;
+  preloadSrcset?: string;
+  preloadSizes?: string;
 }
 
 const {
@@ -23,6 +25,8 @@ const {
   updatedDate,
   isArticle = false,
   preloadImage,
+  preloadSrcset,
+  preloadSizes,
 } = Astro.props;
 
 const canonical = canonicalUrl ?? new URL(Astro.url.pathname, Astro.site).toString();
@@ -51,15 +55,6 @@ const jsonLd = isArticle
 <!doctype html>
 <html lang="id">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18335228478"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'AW-18335228478');
-  </script>
   <meta name="google-site-verification" content="XKxPBToqCOOdcG7BfuV_9CaxWSMBZ1CedyislvHBWFM" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -79,7 +74,10 @@ const jsonLd = isArticle
   <noscript><link rel="stylesheet" href="/animations.css"></noscript>
 
   <!-- Preload LCP image for article pages -->
-  {isArticle && preloadImage && (
+  {isArticle && preloadSrcset && preloadSizes && (
+    <link rel="preload" as="image" fetchpriority="high" imagesrcset={preloadSrcset} imagesizes={preloadSizes} />
+  )}
+  {isArticle && preloadImage && !preloadSrcset && (
     <link rel="preload" as="image" fetchpriority="high" href={preloadImage} />
   )}
 
@@ -110,6 +108,16 @@ const jsonLd = isArticle
   <link rel="alternate" type="application/rss+xml" title={siteName} href="/rss.xml" />
 
   <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+  <!-- Google tag (gtag.js) - placed at the end of head to prevent blocking critical CSS/LCP preloads -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18335228478"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'AW-18335228478');
+  </script>
 </head>
 <body>
   <AnimatedBackground />

@@ -31,7 +31,7 @@ for (const path in imageModules) {
 
 const heroImageSrc = imageMap[post.data.heroImage] || post.data.heroImage;
 
-// Get optimized image with correct path for preload
+// Get optimized image with correct path and responsive sizes for preload
 const optimizedHeroImage = heroImageSrc && typeof heroImageSrc !== 'string'
   ? await getImage({
       src: heroImageSrc,
@@ -39,17 +39,7 @@ const optimizedHeroImage = heroImageSrc && typeof heroImageSrc !== 'string'
       height: 630,
       format: 'webp',
       quality: 85,
-    })
-  : undefined;
-
-// Get the smallest image from srcset for mobile preload
-const mobileHeroImage = heroImageSrc && typeof heroImageSrc !== 'string'
-  ? await getImage({
-      src: heroImageSrc,
-      width: 400,
-      height: 210,
-      format: 'webp',
-      quality: 85,
+      widths: [400, 800, 1200],
     })
   : undefined;
 
@@ -57,6 +47,7 @@ const mobileHeroImage = heroImageSrc && typeof heroImageSrc !== 'string'
 const relatedPosts = allPosts
   .filter((p) => p.id !== post.id)
   .slice(0, 3);
+
 
 // Generate optimized images for related posts
 const relatedPostsWithImages = await Promise.all(
@@ -122,7 +113,8 @@ const tocItems = Array.from(headings).map((match) => ({
   pubDate={post.data.pubDate}
   updatedDate={post.data.updatedDate}
   isArticle={true}
-  preloadImage={mobileHeroImage?.src}
+  preloadSrcset={optimizedHeroImage?.srcSet.attribute}
+  preloadSizes="(max-width: 768px) 100vw, 1200px"
 >
   <!-- Progress bar -->
   <div id="progress-bar" class="progress-bar"></div>
