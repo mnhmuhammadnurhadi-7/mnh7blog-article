@@ -99,33 +99,33 @@
 .related-meta,
 .breadcrumb,
 #no-results {
-  color: var(--text-secondary) !important;
+  color: var(--text-secondary);
 }
 
 .post-title,
 .related-card-title {
-  color: var(--text-primary) !important;
+  color: var(--text-primary);
 }
 
 /* Links and accents — hanya untuk konten artikel, BUKAN nav/logo */
 .article-content a, .btn-link {
-  color: var(--accent-2) !important;
+  color: var(--accent-2);
 }
 
 /* Controls and cards */
 .btn-primary {
-  color: var(--text-primary) !important;
+  color: var(--text-primary);
 }
 .chip, .search-input, .toc-toggle, .post-card, .related-card {
-  border-color: var(--border-color) !important;
+  border-color: var(--border-color);
   background: rgba(255,255,255,0.02);
 }
 
 /* Code / pre / blockquote */
 code, pre, blockquote {
-  color: var(--text-secondary) !important;
-  background: rgba(255,255,255,0.02) !important;
-  border-color: rgba(139,92,246,0.06) !important;
+  color: var(--text-secondary);
+  background: rgba(255,255,255,0.02);
+  border-color: rgba(139,92,246,0.06);
 }
 
 /* Progress bar accent */
