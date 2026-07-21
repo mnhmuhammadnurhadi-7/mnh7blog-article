@@ -1,2 +1,23 @@
-node_modules
-.vercel
+# Build output
+dist/
+.astro/
+
+# Dependencies
+node_modules/
+
+# Environment variables (kalau ada API keys, dll)
+.env
+.env.local
+.env.production
+
+# Editor/OS
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Vercel
+.vercel/
+
+# Logs
+npm-debug.log*
+*.log
