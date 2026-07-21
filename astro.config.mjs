@@ -8,6 +8,8 @@ export default defineConfig({
   site: 'https://mnh7blog-article.vercel.app',
   integrations: [sitemap(), mdx()],
   image: {
-    // Using built-in image service (no Sharp dependency needed)
+    service: {
+      entrypoint: 'astro/assets/services/sharp',
+    },
   },
 });

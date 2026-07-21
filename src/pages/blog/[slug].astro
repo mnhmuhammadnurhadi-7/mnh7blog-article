@@ -1,6 +1,10 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection, render } from 'astro:content';
+import { Image, getImage } from 'astro:assets';
+
+// Load all images from src/images/ automatically
+const imageModules = import.meta.glob('../../images/*.{webp,jpg,jpeg,png}', { eager: true });
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
@@ -16,10 +20,63 @@ const allPosts = (await getCollection('blog')).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 
+// Build dynamic image map from glob results
+const imageMap: Record<string, any> = {};
+for (const path in imageModules) {
+  const fileName = path.split('/').pop();
+  if (fileName) {
+    imageMap[`/images/${fileName}`] = imageModules[path].default;
+  }
+}
+
+const heroImageSrc = imageMap[post.data.heroImage] || post.data.heroImage;
+
+// Get optimized image with correct path for preload
+const optimizedHeroImage = heroImageSrc && typeof heroImageSrc !== 'string'
+  ? await getImage({
+      src: heroImageSrc,
+      width: 1200,
+      height: 630,
+      format: 'webp',
+      quality: 85,
+    })
+  : undefined;
+
+// Get the smallest image from srcset for mobile preload
+const mobileHeroImage = heroImageSrc && typeof heroImageSrc !== 'string'
+  ? await getImage({
+      src: heroImageSrc,
+      width: 400,
+      height: 210,
+      format: 'webp',
+      quality: 85,
+    })
+  : undefined;
+
 // Artikel Lainnya (3 artikel selain yang sedang dibaca)
 const relatedPosts = allPosts
   .filter((p) => p.id !== post.id)
   .slice(0, 3);
+
+// Generate optimized images for related posts
+const relatedPostsWithImages = await Promise.all(
+  relatedPosts.map(async (relatedPost) => {
+    const relatedHeroImageSrc = imageMap[relatedPost.data.heroImage] || relatedPost.data.heroImage;
+    const relatedOptimizedImage = relatedHeroImageSrc && typeof relatedHeroImageSrc !== 'string'
+      ? await getImage({
+          src: relatedHeroImageSrc,
+          width: 600,
+          height: 300,
+          format: 'webp',
+          quality: 85,
+        })
+      : undefined;
+    return {
+      ...relatedPost,
+      optimizedImage: relatedOptimizedImage,
+    };
+  })
+);
 
 // Helper untuk format tanggal
 function formatDate(date: Date) {
@@ -60,11 +117,12 @@ const tocItems = Array.from(headings).map((match) => ({
 <BaseLayout
   title={post.data.title}
   description={post.data.description}
-  image={post.data.heroImage}
+  image={optimizedHeroImage?.src || post.data.heroImage}
   canonicalUrl={post.data.canonicalUrl}
   pubDate={post.data.pubDate}
   updatedDate={post.data.updatedDate}
   isArticle={true}
+  preloadImage={mobileHeroImage?.src}
 >
   <!-- Progress bar -->
   <div id="progress-bar" class="progress-bar"></div>
@@ -108,15 +166,19 @@ const tocItems = Array.from(headings).map((match) => ({
         </div>
       )}
 
-      {post.data.heroImage && (
-        <img 
-          src={post.data.heroImage} 
+      {heroImageSrc && (
+        <Image 
+          src={heroImageSrc} 
           alt={post.data.title} 
           loading="eager"
           fetchpriority="high"
-          width="1200"
-          height="630"
+          width={1200}
+          height={630}
           class="hero-image"
+          format="webp"
+          quality={85}
+          sizes="(max-width: 768px) 100vw, 1200px"
+          widths={[400, 800, 1200]}
         />
       )}
     </header>
@@ -140,15 +202,15 @@ const tocItems = Array.from(headings).map((match) => ({
     )}
 
     <!-- Related articles -->
-    {relatedPosts.length > 0 && (
+    {relatedPostsWithImages.length > 0 && (
       <section class="related-posts">
         <h3 class="related-title">Artikel Lainnya</h3>
         <div class="related-grid">
-          {relatedPosts.map((relatedPost) => (
+          {relatedPostsWithImages.map((relatedPost) => (
             <a class="related-card glass-dark" href={`/blog/${relatedPost.id}/`}>
-              {relatedPost.data.heroImage && (
+              {relatedPost.optimizedImage && (
                 <img 
-                  src={relatedPost.data.heroImage} 
+                  src={relatedPost.optimizedImage.src} 
                   alt={relatedPost.data.title}
                   loading="lazy"
                   width="600"

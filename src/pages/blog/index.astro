@@ -1,9 +1,42 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
+import { getImage } from 'astro:assets';
+
+// Load all images from src/images/ automatically
+const imageModules = import.meta.glob('../../images/*.{webp,jpg,jpeg,png}', { eager: true });
 
 const posts = (await getCollection('blog')).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+// Build dynamic image map from glob results
+const imageMap: Record<string, any> = {};
+for (const path in imageModules) {
+  const fileName = path.split('/').pop();
+  if (fileName) {
+    imageMap[`/images/${fileName}`] = imageModules[path].default;
+  }
+}
+
+// Generate optimized images for post cards
+const postsWithImages = await Promise.all(
+  posts.map(async (post) => {
+    const heroImageSrc = imageMap[post.data.heroImage] || post.data.heroImage;
+    const optimizedImage = heroImageSrc && typeof heroImageSrc !== 'string'
+      ? await getImage({
+          src: heroImageSrc,
+          width: 800,
+          height: 400,
+          format: 'webp',
+          quality: 85,
+        })
+      : undefined;
+    return {
+      ...post,
+      optimizedImage,
+    };
+  })
 );
 
 // kumpulin semua tahun unik buat filter
@@ -49,17 +82,17 @@ function calculateReadingTime(content: string) {
   </div>
 
   <div id="post-grid" class="posts-grid">
-    {posts.map((post) => (
+    {postsWithImages.map((post) => (
       <a
         class="post-card glass-dark"
         href={`/blog/${post.id}/`}
         data-title={post.data.title.toLowerCase()}
         data-year={post.data.pubDate.getFullYear()}
       >
-        {post.data.heroImage && (
-          <img 
-            src={post.data.heroImage} 
-            alt={post.data.title} 
+        {post.optimizedImage && (
+          <img
+            src={post.optimizedImage.src}
+            alt={post.data.title}
             loading="lazy"
             width="800"
             height="400"
