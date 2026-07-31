@@ -1,6 +1,6 @@
 ---
-title: "Sesak Nafas dan Jantung Berdebar Tidak Teratur: Penyebab Umum hingga Penyakit Jantung Langka yang Perlu Diwaspadai"
-description: "Sesak nafas dan jantung berdebar bisa jadi gejala biasa, tapi juga tanda penyakit jantung langka seperti MAPCAs dan severe PH. Kenali bedanya."
+title: "Sesak Nafas, Jantung Berdebar, dan Penyakit Jantung Langka"
+description: "Sesak nafas dan jantung berdebar bisa gejala biasa, tapi juga tanda penyakit jantung langka seperti MAPCAs dan severe PH."
 pubDate: "2026-07-19"
 heroImage: "/images/cover-heart.webp"
 slug: "sesak-nafas-jantung-berdebar-penyakit-jantung-langka"
@@ -108,4 +108,4 @@ Di Indonesia, penanganan kasus jantung bawaan kompleks seperti MAPCAs dan severe
 
 *Artikel ini bersifat edukasi umum dan tidak menggantikan diagnosis atau konsultasi langsung dengan dokter spesialis jantung. Bila kamu mengalami gejala yang disebutkan di atas, terutama tanda bahaya, segera periksakan diri ke fasilitas kesehatan terdekat.*
 
-**Referensi:** CDC, American Heart Association, JACC (Journal of the American College of Cardiology), StatPearls/NCBI, Mayo Clinic, Orphanet, PERKI (Perhimpunan Dokter Spesialis Kardiovaskular Indonesia), IDAI (Ikatan Dokter Anak Indonesia), Kementerian Kesehatan RI, Boston Children's Hospital.
+**Referensi:** [CDC](https://www.cdc.gov), [American Heart Association](https://www.heart.org), [JACC](https://www.jacc.org), StatPearls/NCBI ([MAPCAs](https://www.ncbi.nlm.nih.gov/books/NBK604462/), [Tetralogy of Fallot](https://www.ncbi.nlm.nih.gov/books/NBK513288/)), [Mayo Clinic](https://www.mayoclinic.org), [Orphanet - Eisenmenger Syndrome](https://www.orpha.net/en/disease/detail/97214), [PERKI](https://www.inaheart.org), [IDAI](https://www.idai.or.id), Kementerian Kesehatan RI, [Boston Children's Hospital](https://www.childrenshospital.org)

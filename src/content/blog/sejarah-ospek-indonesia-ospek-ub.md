@@ -1,6 +1,6 @@
 ---
-title: "Sejarah Ospek di Indonesia hingga Perjalanan OSPEK UB dari Masa ke Masa"
-description: "Sejarah ospek di Indonesia hingga perjalanan OSPEK UB dari masa ke masa, dari era perpeloncoan sampai berubah nama jadi PK2MABA."
+title: "Sejarah Ospek Indonesia hingga OSPEK UB"
+description: "Sejarah ospek di Indonesia dari era perpeloncoan hingga OSPEK UB berubah nama jadi PK2MABA."
 pubDate: "2026-07-20"
 heroImage: "/images/cover-ospek5.webp"
 slug: "sejarah-ospek-indonesia-ospek-ub"
@@ -98,4 +98,4 @@ Karena ketentuan ini bisa berubah, cara paling aman untuk dapat info yang benar-
 
 *Artikel ini disusun untuk tujuan edukasi sejarah dan informasi umum. Sebagian detail sejarah ospek UB era 1970–1990an masih terbatas dokumentasinya secara publik, sehingga disajikan sebagai gambaran umum berdasarkan pola nasional pada masa itu.*
 
-**Referensi:** Historia.ID, Tempo.co, Kompas.com, Liputan6.com, ANTARA News, Republika Online, situs resmi Universitas Brawijaya (ub.ac.id, wiki.ub.ac.id, kemahasiswaan.ub.ac.id, filkom.ub.ac.id, prasetya.ub.ac.id).
+**Referensi:** [Historia.ID](https://historia.id), [Tempo.co](https://www.tempo.co), [Kompas.com](https://www.kompas.com), [Liputan6.com](https://www.liputan6.com), [ANTARA News](https://www.antaranews.com), [Republika Online](https://www.republika.co.id), situs resmi Universitas Brawijaya ([ub.ac.id](https://ub.ac.id), [wiki.ub.ac.id](https://wiki.ub.ac.id), [kemahasiswaan.ub.ac.id](https://kemahasiswaan.ub.ac.id), [filkom.ub.ac.id](https://filkom.ub.ac.id), [prasetya.ub.ac.id](https://prasetya.ub.ac.id))

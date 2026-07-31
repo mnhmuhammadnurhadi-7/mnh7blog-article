@@ -6,6 +6,7 @@ import mdx from '@astrojs/mdx';
 // Contoh sementara: https://mnhblog.vercel.app
 export default defineConfig({
   site: 'https://mnh7blog-article.vercel.app',
+  trailingSlash: 'always',
   integrations: [sitemap(), mdx()],
   image: {
     service: {
