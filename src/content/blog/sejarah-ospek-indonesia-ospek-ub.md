@@ -56,8 +56,6 @@ Dokumentasi resmi soal kapan tepatnya kegiatan orientasi mahasiswa baru pertama 
 
 Titik balik terjadi di dekade 2010-an, ketika UB resmi mengadopsi istilah **Pengenalan Kehidupan Kampus Mahasiswa Baru (PK2MABA)**. Pada pelaksanaan tahun akademik 2012/2013, kegiatan dibagi ketat jadi dua hari di tingkat universitas dan dua hari di tingkat fakultas, disertai pengesahan [Kode Etik Mahasiswa](https://kemahasiswaan.ub.ac.id/kode-etik/) lewat SK Rektor untuk menegaskan standar perilaku akademis dan menolak segala bentuk kekerasan.
 
-Setahun setelahnya, Fakultas Ilmu Komputer (FILKOM, dulu PTIIK) jadi salah satu pelopor perubahan budaya di tingkat fakultas dengan memperkenalkan "konsep pendampingan" mengganti bentakan senior dengan sistem bimbingan tutor sebaya yang informatif. Pendekatan ini kemudian diadopsi lebih luas di tingkat universitas.
-
 Saat ini, seluruh rangkaian penerimaan mahasiswa baru UB dipayungi dalam **RAJA Brawijaya** (Rangkaian Acara Jelajah Almamater), yang terdiri dari tiga fase: Pengenalan Kehidupan Kampus Universitas Brawijaya (PKKMU), Pengenalan Budi Pekerti dan Kepemimpinan (PBPK), dan ditutup dengan Open House untuk mengenalkan puluhan unit kegiatan mahasiswa (UKM). Kehadiran Juru Bahasa Isyarat dalam pembukaan RAJA Brawijaya juga jadi bukti komitmen kampus terhadap inklusivitas bagi mahasiswa penyandang disabilitas.
 
 ## Kenapa Ospek UB Berubah Nama Jadi PK2MABA?
@@ -104,6 +102,5 @@ Karena ketentuan ini bisa berubah, cara paling aman untuk dapat info yang benar-
 - Liputan6.com, [Panitia Ospek Gunadarma Diduga Menganiaya Mahasiswa Baru](https://www.liputan6.com/news/read/19258/panitia-ospek-gunadarma-diduga-menganiaya-mahasiswa-baru) — kasus Gunadarma 2001
 - ANTARA News, [Mahasiswa Baru ITN Tewas Saat Ospek Mungkin Akan Diotopsi](https://www.antaranews.com/berita/409196/mahasiswa-baru-itn-tewas-saat-ospek-mungkin-akan-diotopsi) — kasus ITN Malang 2013
 - Republika Online, [Polisi Tetapkan Empat Tersangka Kasus Kematian Mahasiswa ITN](https://news.republika.co.id/berita/mzrhu2/polisi-tetapkan-empat-tersangka-kasus-kematian-mahasiswa-itn) — kasus ITN Malang 2013 (perkembangan hukum)
-- Universitas Brawijaya, [Kode Etik Mahasiswa](https://kemahasiswaan.ub.ac.id/kode-etik/), [Peraturan Rektor No. 328/2011 & No. 69/2020](https://divisihukum.ub.ac.id/detail_produk/218), [Prasetya UB (portal berita resmi)](https://prasetya.ub.ac.id), [FILKOM UB](https://filkom.ub.ac.id), [Wiki UB](https://wiki.ub.ac.id)
-- Historia.ID, [historia.id](https://historia.id) — konteks sejarah umum ospek/perpeloncoan Indonesia
+- Universitas Brawijaya, [Kode Etik Mahasiswa](https://kemahasiswaan.ub.ac.id/kode-etik/), [Peraturan Rektor No. 328/2011 & No. 69/2020](https://divisihukum.ub.ac.id/detail_produk/218)
 - Kompas.com, [Polres Malang Usut Kematian Fikri akibat Ospek](https://regional.kompas.com/read/2013/12/10/1732204/Polres.Malang.Usut.Kematian.Fikri.akibat.Ospek) — kasus ITN Malang 2013

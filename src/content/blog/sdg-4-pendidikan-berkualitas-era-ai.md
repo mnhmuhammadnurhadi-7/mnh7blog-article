@@ -41,6 +41,8 @@ Penerapan AI di pendidikan Indonesia bukan lagi wacana ini sudah berjalan bertah
 
 Pola yang terlihat: penerapan AI di jenjang dasar-menengah masih berfokus ke literasi dan pengenalan konsep, sementara di jenjang kuliah sudah mulai masuk ke riset terapan dan pembukaan jalur studi khusus jarak yang wajar mengingat kesiapan infrastruktur dan SDM antar-jenjang memang berbeda jauh.
 
+## Apa Saja Tantangan Pendidikan di Era AI bagi Indonesia?
+
 Di balik potensi tersebut, tiga tantangan besar menanti dan bagi Indonesia, ketiganya saling bertautan dengan persoalan struktural yang sudah lama ada.
 
 **Kesenjangan akses digital.** Selama sekolah-sekolah di kota besar mulai mengadopsi platform AI canggih, banyak sekolah di wilayah 3T (Tertinggal, Terdepan, Terluar) masih bergulat dengan akses internet yang tidak stabil, bahkan listrik yang belum merata. Jika solusi AI premium hanya dinikmati sekolah perkotaan, teknologi ini berisiko melahirkan kasta baru dalam pendidikan bertentangan langsung dengan semangat inklusivitas SDG 4.
@@ -86,7 +88,8 @@ Pada akhirnya, keberhasilan SDG 4 di Indonesia tidak akan ditentukan oleh secang
 2. APJII, Survei Penetrasi Internet dan Perilaku Pengguna Internet Indonesia 2025 dikutip via [Kompas.id](https://www.kompas.id/artikel/en-pengguna-ai-di-indonesia-meningkat-kebanyakan-gen-z-untuk-belajar) dan [UGM](https://ugm.ac.id/en/news/gen-z-leads-ai-adoption-ugm-expert-shares-tips-for-using-artificial-intelligence-wisely/)
 3. Tirto & Jakpat, survei penggunaan AI untuk tugas sekolah/kuliah, Mei 2024 [tirto.id](https://tirto.id/penggunaan-ai-di-dunia-pendidikan-makin-marak-dan-merata-gZax)
 4. [McKinsey Global Institute, "Generative AI and the Future of Work in America"](https://www.mckinsey.com/mgi/our-research/generative-ai-and-the-future-of-work-in-america), 26 Juli 2023
-6. UNESCO (2025), [AI and the Future of Education: Disruptions, Dilemmas and Directions](https://www.unesco.org/en/articles/ai-and-future-education-disruptions-dilemmas-and-directions)
+5. UNESCO (2025), [AI and the Future of Education: Disruptions, Dilemmas and Directions](https://www.unesco.org/en/articles/ai-and-future-education-disruptions-dilemmas-and-directions)
+6. Artikel asli penulis: "SDGs 4: Pendidikan Yang Berkualitas Di Era AI", JurnalPost, 2026
 7. Kemendikdasmen, [Siaran Pers: Kolaborasi Kemendikdasmen dan Sektor Swasta Implementasikan Pembelajaran Koding dan AI](https://www.kemendikdasmen.go.id/siaran-pers/13463-kolaborasi-kemendikdasmen-dan-sektor-swasta-implementasikan-pembelajaran-koding-dan-ai), Agustus 2025
 8. Prasetya UB, [UB Perkuat Pengembangan AI untuk Dukung Sekolah Rakyat](https://prasetya.ub.ac.id/ub-perkuat-pengembangan-ai-untuk-dukung-sekolah-rakyat/), Juli 2026
 9. Kompas.com, [UI Buka Prodi Kecerdasan Artifisial Mulai 2026](https://www.kompas.com/edu/read/2025/10/05/081548171/ui-buka-prodi-kecerdasan-artifisial-mulai-2026-ini-daftar-mata-kuliahnya), Oktober 2025
