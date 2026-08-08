@@ -9,7 +9,7 @@ tags: ["Sejarah Kampus", "Universitas Brawijaya", "PK2MABA"]
 
 ## Sejarah Ospek di Indonesia: Dari Mana Tradisi Ini Bermula?
 
-Sejarah ospek di Indonesia ternyata jauh lebih panjang dari yang banyak orang kira akarnya bisa ditelusuri sampai ke masa kolonial Belanda. Istilah aslinya adalah *ontgroening*, dari kata Belanda *groen* yang berarti "hijau", merujuk pada mahasiswa baru yang dianggap masih "mentah" dan perlu proses pematangan sebelum resmi jadi bagian komunitas akademik.
+Ospek di Indonesia bukan tradisi baru sejarahnya ternyata jauh lebih panjang dari yang banyak orang kira, dengan akar yang bisa ditelusuri sampai ke masa kolonial Belanda. Istilah aslinya adalah *ontgroening*, dari kata Belanda *groen* yang berarti "hijau", merujuk pada mahasiswa baru yang dianggap masih "mentah" dan perlu proses pematangan sebelum resmi jadi bagian komunitas akademik.
 
 Praktik ini pertama kali terdokumentasi di lingkungan pendidikan kedokteran kolonial, STOVIA, dengan jejak tertulis sejak sekitar tahun 1898 dan terus berlanjut sampai dekade 1920-an. Pada masa itu, kegiatannya diawasi ketat oleh pihak sekolah, dibatasi di luar jam belajar, dan justru difokuskan untuk membangun keakraban lintas suku antar mahasiswa jauh berbeda dari citra ospek yang dikenal orang sekarang.
 
@@ -29,13 +29,13 @@ Setelah kemerdekaan, istilah dan aturan kegiatan ini terus berganti seiring kebi
 
 Sepanjang Orde Baru hingga awal Reformasi, ospek dan Mapram jadi ajang di mana relasi senior-junior yang timpang dilanggengkan secara sistematis, dengan dalih "pembentukan mental" dan "penempaan disiplin". Kegiatan sering diisi hukuman fisik yang tidak proporsional dan berlangsung dari dini hari sampai lewat tengah malam.
 
-Salah satu titik balik terbesar terjadi tahun 1971, saat 19 dari 424 mahasiswa baru Institut Teknologi Sepuluh Nopember (ITS) Surabaya disiram bahkan dipaksa terkena campuran soda api dan air seni oleh senior mereka dalam kegiatan Mapram. Insiden ini cukup fatal sampai memicu **SK Menteri Pendidikan dan Kebudayaan No. 043/1971**, yang menghapus istilah Mapram dan mendorong pergantian ke format Pekan Orientasi Studi (POS) secara nasional.
+Salah satu titik balik terbesar terjadi tahun 1971, saat 19 dari 424 mahasiswa baru Institut Teknologi Sepuluh Nopember (ITS) Surabaya disiram bahkan dipaksa terkena campuran soda api dan air seni oleh senior mereka dalam kegiatan Mapram. Insiden ini cukup fatal sampai memicu **[SK Menteri Pendidikan dan Kebudayaan No. 043/1971](https://tekno.tempo.co/read/1622290/identik-dengan-perpeloncoan-dan-kekerasan-berikut-sejarah-ospek)**, yang menghapus istilah Mapram dan mendorong pergantian ke format Pekan Orientasi Studi (POS) secara nasional.
 
 Sayangnya, pergantian nama saja tidak serta-merta menghentikan kekerasannya. Memasuki era 2000-an, sejumlah kasus fatal justru memicu desakan publik untuk reformasi regulasi yang lebih tegas:
 
-- **STPDN, 2000 dan 2003** Erry Rahman (2000) dan Wahyu Hidayat (2003) meninggal akibat penganiayaan senior dalam masa orientasi di Sekolah Tinggi Pemerintahan Dalam Negeri. Kasus Wahyu Hidayat sempat menyeret belasan tersangka ke pengadilan dan membuka banyak kasus kekerasan tersembunyi lain di institusi itu.
-- **Universitas Gunadarma, 2001** Donny Maharaja, mahasiswa baru, meninggal akibat kekerasan fisik dari senior saat mengikuti kegiatan ospek di Cileungsi, Bogor.
-- **ITN Malang, 2013** Fikri Dolasmantya Surya, mahasiswa baru Planologi, meninggal saat mengikuti kegiatan "Kemah Bakti Desa" di Pantai Goa Cina, Malang. Kasus ini memicu unjuk rasa besar, pemberhentian ketua jurusan, hingga sanksi pidana bagi pelaku.
+- **[STPDN, 2000 dan 2003](https://www.liputan6.com/news/read/62181/kematian-wahyu-mengulang-kasus-tiga-tahun-silam)** Erry Rahman (2000) dan Wahyu Hidayat (2003) meninggal akibat penganiayaan senior dalam masa orientasi di Sekolah Tinggi Pemerintahan Dalam Negeri. Kasus Wahyu Hidayat sempat menyeret belasan tersangka ke pengadilan dan membuka banyak kasus kekerasan tersembunyi lain di institusi itu.
+- **[Universitas Gunadarma, 2001](https://www.liputan6.com/news/read/19258/panitia-ospek-gunadarma-diduga-menganiaya-mahasiswa-baru)** Donny Maharaja, mahasiswa baru, meninggal akibat kekerasan fisik dari senior saat mengikuti kegiatan ospek di Cileungsi, Bogor.
+- **[ITN Malang, 2013](https://www.antaranews.com/berita/409196/mahasiswa-baru-itn-tewas-saat-ospek-mungkin-akan-diotopsi)** Fikri Dolasmantya Surya, mahasiswa baru Planologi, meninggal saat mengikuti kegiatan "Kemah Bakti Desa" di Pantai Goa Cina, Malang. Kasus ini memicu unjuk rasa besar, pemberhentian ketua jurusan, hingga sanksi pidana bagi pelaku.
 
 Rentetan tragedi ini akhirnya memaksa pemerintah mengambil langkah hukum yang lebih struktural:
 
@@ -54,7 +54,7 @@ Melalui Surat Keputusan Menteri PTIP Nomor 1 Tahun 1963, UB resmi berstatus univ
 
 Dokumentasi resmi soal kapan tepatnya kegiatan orientasi mahasiswa baru pertama kali diadakan di UB pasca-penegerian 1963 masih terbatas di arsip publik. Namun secara umum, sepanjang dekade 1970-an sampai 1990-an, ospek di UB mengikuti pola Mapram dan Ospek nasional menitikberatkan pada pembinaan disiplin dan pemakaian atribut khas, sejalan dengan tren nasional yang dibahas di bagian sebelumnya.
 
-Titik balik terjadi di dekade 2010-an, ketika UB resmi mengadopsi istilah **Pengenalan Kehidupan Kampus Mahasiswa Baru (PK2MABA)**. Pada pelaksanaan tahun akademik 2012/2013, kegiatan dibagi ketat jadi dua hari di tingkat universitas dan dua hari di tingkat fakultas, disertai pengesahan Kode Etik Mahasiswa lewat SK Rektor untuk menegaskan standar perilaku akademis dan menolak segala bentuk kekerasan.
+Titik balik terjadi di dekade 2010-an, ketika UB resmi mengadopsi istilah **Pengenalan Kehidupan Kampus Mahasiswa Baru (PK2MABA)**. Pada pelaksanaan tahun akademik 2012/2013, kegiatan dibagi ketat jadi dua hari di tingkat universitas dan dua hari di tingkat fakultas, disertai pengesahan [Kode Etik Mahasiswa](https://kemahasiswaan.ub.ac.id/kode-etik/) lewat SK Rektor untuk menegaskan standar perilaku akademis dan menolak segala bentuk kekerasan.
 
 Setahun setelahnya, Fakultas Ilmu Komputer (FILKOM, dulu PTIIK) jadi salah satu pelopor perubahan budaya di tingkat fakultas dengan memperkenalkan "konsep pendampingan" mengganti bentakan senior dengan sistem bimbingan tutor sebaya yang informatif. Pendekatan ini kemudian diadopsi lebih luas di tingkat universitas.
 
@@ -98,4 +98,12 @@ Karena ketentuan ini bisa berubah, cara paling aman untuk dapat info yang benar-
 
 *Artikel ini disusun untuk tujuan edukasi sejarah dan informasi umum. Sebagian detail sejarah ospek UB era 1970–1990an masih terbatas dokumentasinya secara publik, sehingga disajikan sebagai gambaran umum berdasarkan pola nasional pada masa itu.*
 
-**Referensi:** [Historia.ID](https://historia.id), [Tempo.co](https://www.tempo.co), [Kompas.com](https://www.kompas.com), [Liputan6.com](https://www.liputan6.com), [ANTARA News](https://www.antaranews.com), [Republika Online](https://www.republika.co.id), situs resmi Universitas Brawijaya ([ub.ac.id](https://ub.ac.id), [wiki.ub.ac.id](https://wiki.ub.ac.id), [kemahasiswaan.ub.ac.id](https://kemahasiswaan.ub.ac.id), [filkom.ub.ac.id](https://filkom.ub.ac.id), [prasetya.ub.ac.id](https://prasetya.ub.ac.id))
+**Referensi:**
+- Tempo.co, [Identik dengan Perpeloncoan dan Kekerasan, Berikut Sejarah Ospek](https://tekno.tempo.co/read/1622290/identik-dengan-perpeloncoan-dan-kekerasan-berikut-sejarah-ospek) — kasus ITS 1971
+- Liputan6.com, [Kematian Wahyu Mengulang Kasus Tiga Tahun Silam](https://www.liputan6.com/news/read/62181/kematian-wahyu-mengulang-kasus-tiga-tahun-silam) — kasus STPDN 2000 & 2003
+- Liputan6.com, [Panitia Ospek Gunadarma Diduga Menganiaya Mahasiswa Baru](https://www.liputan6.com/news/read/19258/panitia-ospek-gunadarma-diduga-menganiaya-mahasiswa-baru) — kasus Gunadarma 2001
+- ANTARA News, [Mahasiswa Baru ITN Tewas Saat Ospek Mungkin Akan Diotopsi](https://www.antaranews.com/berita/409196/mahasiswa-baru-itn-tewas-saat-ospek-mungkin-akan-diotopsi) — kasus ITN Malang 2013
+- Republika Online, [Polisi Tetapkan Empat Tersangka Kasus Kematian Mahasiswa ITN](https://news.republika.co.id/berita/mzrhu2/polisi-tetapkan-empat-tersangka-kasus-kematian-mahasiswa-itn) — kasus ITN Malang 2013 (perkembangan hukum)
+- Universitas Brawijaya, [Kode Etik Mahasiswa](https://kemahasiswaan.ub.ac.id/kode-etik/), [Peraturan Rektor No. 328/2011 & No. 69/2020](https://divisihukum.ub.ac.id/detail_produk/218), [Prasetya UB (portal berita resmi)](https://prasetya.ub.ac.id), [FILKOM UB](https://filkom.ub.ac.id), [Wiki UB](https://wiki.ub.ac.id)
+- Historia.ID, [historia.id](https://historia.id) — konteks sejarah umum ospek/perpeloncoan Indonesia
+- Kompas.com, [Polres Malang Usut Kematian Fikri akibat Ospek](https://regional.kompas.com/read/2013/12/10/1732204/Polres.Malang.Usut.Kematian.Fikri.akibat.Ospek) — kasus ITN Malang 2013

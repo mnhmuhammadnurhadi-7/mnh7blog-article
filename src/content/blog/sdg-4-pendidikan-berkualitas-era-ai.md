@@ -31,7 +31,15 @@ Data dari laporan Intel Education tentang AI dalam pendidikan menggambarkan skal
 
 *Sumber: Intel Education, "Artificial Intelligence (AI) in Education."*
 
-## Apa Saja Tantangan Pendidikan di Era AI bagi Indonesia?
+## Apa Contoh Penerapan AI di Sekolah Indonesia Saat Ini?
+
+Penerapan AI di pendidikan Indonesia bukan lagi wacana ini sudah berjalan bertahap dari bangku SD sampai kuliah, meski cakupannya masih terbatas.
+
+**Jenjang SD, SMP, dan SMA.** Mulai tahun ajaran 2025/2026, Koding dan Kecerdasan Artifisial (KKA) resmi jadi mata pelajaran pilihan sejak kelas 5 SD, berlanjut ke SMP dan SMA, sebagai bagian dari penguatan pembelajaran STEM. Kemendikdasmen sudah melatih puluhan ribu guru di seluruh Indonesia untuk mendukung implementasi ini, dan menjangkau ribuan sekolah lewat program pendukung seperti kompetisi koding visual ImajiNation yang melibatkan lebih dari 11.000 peserta dari 2.000 sekolah di 38 provinsi.
+
+**Jenjang kuliah.** Sejumlah kampus sudah menjalankan program AI yang lebih terarah. Universitas Brawijaya jadi salah satu proyek percontohan program AI Talent Factory sejak 2025, yang tahun berikutnya diperluas lewat kolaborasi dengan ITS dan UGM riset kolaboratif ini bahkan sudah menghasilkan solusi AI nyata untuk mendukung program Sekolah Rakyat bersama Kementerian Sosial. Di sisi lain, Universitas Indonesia baru saja membuka program studi sarjana Kecerdasan Artifisial di Fakultas Ilmu Komputer, dengan angkatan pertama mulai tahun akademik 2026/2027.
+
+Pola yang terlihat: penerapan AI di jenjang dasar-menengah masih berfokus ke literasi dan pengenalan konsep, sementara di jenjang kuliah sudah mulai masuk ke riset terapan dan pembukaan jalur studi khusus jarak yang wajar mengingat kesiapan infrastruktur dan SDM antar-jenjang memang berbeda jauh.
 
 Di balik potensi tersebut, tiga tantangan besar menanti dan bagi Indonesia, ketiganya saling bertautan dengan persoalan struktural yang sudah lama ada.
 
@@ -48,8 +56,7 @@ Skala adopsi AI di kalangan pelajar Indonesia yang didominasi Gen Z menunjukkan 
 | Proporsi pengguna AI nasional dari Gen Z | 43,7% (tertinggi dibanding generasi lain; Milenial 22,3%) | APJII, Survei Internet Indonesia 2025 |
 | Pemanfaatan AI untuk kebutuhan belajar | 43,98%, naik tajam dari 21,84% tahun sebelumnya | APJII, Survei Internet Indonesia 2025 |
 | Pelajar yang menggunakan AI untuk mengerjakan tugas | 86–87% pelajar SMA dan mahasiswa (setidaknya sekali sebulan) | Survei Tirto & Jakpat, 2024 |
-| Proyeksi otomatisasi jam kerja global akibat AI generatif | Hingga ±30% jam kerja pada 2030 | McKinsey Global Institute |
-| Proyeksi disrupsi lapangan kerja | Eliminasi ~29% pekerjaan konvensional, penciptaan ~13% peran baru hingga 2030 | Forrester Research |
+| Proyeksi otomatisasi jam kerja akibat AI generatif (AS) | Hingga ~30% jam kerja pada 2030 | [McKinsey Global Institute, 2023](https://www.mckinsey.com/mgi/our-research/generative-ai-and-the-future-of-work-in-america) |
 
 ## Bagaimana Cara Mengatasi Dampak Negatif AI dalam Pembelajaran?
 
@@ -78,7 +85,8 @@ Pada akhirnya, keberhasilan SDG 4 di Indonesia tidak akan ditentukan oleh secang
 1. Intel, [Artificial Intelligence (AI) in Education](https://www.intel.com/content/www/us/en/learn/ai-in-education.html)
 2. APJII, Survei Penetrasi Internet dan Perilaku Pengguna Internet Indonesia 2025 dikutip via [Kompas.id](https://www.kompas.id/artikel/en-pengguna-ai-di-indonesia-meningkat-kebanyakan-gen-z-untuk-belajar) dan [UGM](https://ugm.ac.id/en/news/gen-z-leads-ai-adoption-ugm-expert-shares-tips-for-using-artificial-intelligence-wisely/)
 3. Tirto & Jakpat, survei penggunaan AI untuk tugas sekolah/kuliah, Mei 2024 [tirto.id](https://tirto.id/penggunaan-ai-di-dunia-pendidikan-makin-marak-dan-merata-gZax)
-4. McKinsey Global Institute, laporan tentang AI generatif dan masa depan pekerjaan
-5. Forrester Research, "The Future Of Work Is Dynamic And Adaptive"
+4. [McKinsey Global Institute, "Generative AI and the Future of Work in America"](https://www.mckinsey.com/mgi/our-research/generative-ai-and-the-future-of-work-in-america), 26 Juli 2023
 6. UNESCO (2025), [AI and the Future of Education: Disruptions, Dilemmas and Directions](https://www.unesco.org/en/articles/ai-and-future-education-disruptions-dilemmas-and-directions)
-7. Artikel asli penulis: "SDGs 4: Pendidikan Yang Berkualitas Di Era AI", JurnalPost, 2026
+7. Kemendikdasmen, [Siaran Pers: Kolaborasi Kemendikdasmen dan Sektor Swasta Implementasikan Pembelajaran Koding dan AI](https://www.kemendikdasmen.go.id/siaran-pers/13463-kolaborasi-kemendikdasmen-dan-sektor-swasta-implementasikan-pembelajaran-koding-dan-ai), Agustus 2025
+8. Prasetya UB, [UB Perkuat Pengembangan AI untuk Dukung Sekolah Rakyat](https://prasetya.ub.ac.id/ub-perkuat-pengembangan-ai-untuk-dukung-sekolah-rakyat/), Juli 2026
+9. Kompas.com, [UI Buka Prodi Kecerdasan Artifisial Mulai 2026](https://www.kompas.com/edu/read/2025/10/05/081548171/ui-buka-prodi-kecerdasan-artifisial-mulai-2026-ini-daftar-mata-kuliahnya), Oktober 2025
