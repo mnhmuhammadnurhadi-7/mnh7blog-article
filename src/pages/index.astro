@@ -60,7 +60,18 @@ function calculateReadingTime(content: string) {
   title="Home"
   description="Portofolio dan tulisan Muhammad Nur Hadi seputar SEO, project coordination, dan digital product."
 >
- 
+  <section class="hero">
+    <div class="hero-content">
+      <p class="hero-category">Blog | Article</p>
+      <h1 class="hero-title">
+        <span class="gradient-text">THE BLOATICLE</span>
+      </h1>
+      <p class="hero-subtitle">
+        Berbagi informasi, wawasan, dan cerita dari berbagai topik.
+      </p>
+    </div>
+  </section>
+
   <section class="latest-posts">
     <div class="section-header">
       <h2 class="section-title">Artikel Terbaru</h2>
@@ -103,25 +114,35 @@ function calculateReadingTime(content: string) {
 
 <style>
   .hero {
-    min-height: calc(100vh - 4rem);
+    min-height: calc(30vh - 4rem);
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-    padding: 6rem 1.5rem; /* py-24 px-6 */
+    justify-content: center;
+    padding: 5rem 1.5rem 0.5rem;
   }
 
   @media (min-width: 768px) {
     .hero {
-      padding: 6rem 2.5rem; /* py-24 md:px-10 */
+      padding: 5rem 2.5rem 0.5rem;
     }
   }
 
   .hero-content {
-    max-width: 56rem; /* max-w-4xl */
+    max-width: 56rem;
     width: 100%;
-    text-align: left;
+    text-align: center;
     animation: heroEnter 0.9s cubic-bezier(0.4, 0, 0.2, 1) both;
     animation-delay: 0.2s;
+  }
+
+  .hero-category {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
   }
 
   @keyframes heroEnter {
@@ -151,6 +172,15 @@ function calculateReadingTime(content: string) {
     }
     50% {
       background-position: 100% 50%;
+    }
+  }
+
+  @keyframes tagFloat {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-8px);
     }
   }
 
@@ -302,7 +332,7 @@ function calculateReadingTime(content: string) {
   }
 
   .latest-posts {
-    padding: 4rem 0;
+    padding: 1rem 0 4rem;
   }
 
   .section-header {
@@ -452,6 +482,10 @@ function calculateReadingTime(content: string) {
   }
 
   @media (max-width: 768px) {
+    .hero-category {
+      font-size: 0.75rem;
+    }
+
     .hero-title {
       font-size: 2.5rem;
     }
